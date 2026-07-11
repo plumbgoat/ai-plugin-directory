@@ -1,127 +1,88 @@
 <style>
   :root {
-    --paper: #F6F7F6;
-    --paper-2: #ECEEEC;
-    --ink: #191C1B;
-    --muted: #64706C;
-    --line: #DCE0DD;
-    --card: #FFFFFF;
-    --accent: #0C8C7C;
-    --accent-ink: #0A7A6C;
-    --accent-soft: rgba(12, 140, 124, 0.10);
-    --claude: #C0562F;
-    --claude-soft: rgba(192, 86, 47, 0.12);
-    --uni: #6D54E0;
-    --uni-soft: rgba(109, 84, 224, 0.12);
-    --shadow: 0 1px 2px rgba(25,28,27,0.04), 0 10px 30px -20px rgba(25,28,27,0.30);
-    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #0F1211; --paper-2: #161A18; --ink: #E7EBE9; --muted: #8C978F;
-      --line: #262C29; --card: #171B19; --accent: #24B3A0; --accent-ink: #35C4B0;
-      --accent-soft: rgba(36, 179, 160, 0.13);
-      --claude: #E67C51; --claude-soft: rgba(230, 124, 81, 0.15);
-      --uni: #9986F5; --uni-soft: rgba(153, 134, 245, 0.15);
-      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 14px 40px -22px rgba(0,0,0,0.7);
-    }
-  }
-  :root[data-theme="light"] {
     --paper:#F6F7F6;--paper-2:#ECEEEC;--ink:#191C1B;--muted:#64706C;--line:#DCE0DD;--card:#FFFFFF;
     --accent:#0C8C7C;--accent-ink:#0A7A6C;--accent-soft:rgba(12,140,124,0.10);
     --claude:#C0562F;--claude-soft:rgba(192,86,47,0.12);--uni:#6D54E0;--uni-soft:rgba(109,84,224,0.12);
     --shadow:0 1px 2px rgba(25,28,27,0.04), 0 10px 30px -20px rgba(25,28,27,0.30);
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
-  :root[data-theme="dark"] {
-    --paper:#0F1211;--paper-2:#161A18;--ink:#E7EBE9;--muted:#8C978F;--line:#262C29;--card:#171B19;
-    --accent:#24B3A0;--accent-ink:#35C4B0;--accent-soft:rgba(36,179,160,0.13);
-    --claude:#E67C51;--claude-soft:rgba(230,124,81,0.15);--uni:#9986F5;--uni-soft:rgba(153,134,245,0.15);
-    --shadow:0 1px 2px rgba(0,0,0,0.3), 0 14px 40px -22px rgba(0,0,0,0.7);
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#0F1211;--paper-2:#161A18;--ink:#E7EBE9;--muted:#8C978F;--line:#262C29;--card:#171B19;
+      --accent:#24B3A0;--accent-ink:#35C4B0;--accent-soft:rgba(36,179,160,0.13);
+      --claude:#E67C51;--claude-soft:rgba(230,124,81,0.15);--uni:#9986F5;--uni-soft:rgba(153,134,245,0.15);
+      --shadow:0 1px 2px rgba(0,0,0,0.3), 0 14px 40px -22px rgba(0,0,0,0.7);
+    }
   }
+  :root[data-theme="light"]{--paper:#F6F7F6;--paper-2:#ECEEEC;--ink:#191C1B;--muted:#64706C;--line:#DCE0DD;--card:#FFFFFF;--accent:#0C8C7C;--accent-ink:#0A7A6C;--accent-soft:rgba(12,140,124,0.10);--claude:#C0562F;--claude-soft:rgba(192,86,47,0.12);--uni:#6D54E0;--uni-soft:rgba(109,84,224,0.12);--shadow:0 1px 2px rgba(25,28,27,0.04),0 10px 30px -20px rgba(25,28,27,0.30);}
+  :root[data-theme="dark"]{--paper:#0F1211;--paper-2:#161A18;--ink:#E7EBE9;--muted:#8C978F;--line:#262C29;--card:#171B19;--accent:#24B3A0;--accent-ink:#35C4B0;--accent-soft:rgba(36,179,160,0.13);--claude:#E67C51;--claude-soft:rgba(230,124,81,0.15);--uni:#9986F5;--uni-soft:rgba(153,134,245,0.15);--shadow:0 1px 2px rgba(0,0,0,0.3),0 14px 40px -22px rgba(0,0,0,0.7);}
 
   * { box-sizing: border-box; }
-  .wrap {
-    font-family: var(--sans); background: var(--paper); color: var(--ink);
-    -webkit-font-smoothing: antialiased; line-height: 1.55;
-    padding: clamp(1.2rem, 3vw, 2.4rem) 1.2rem 4rem; min-height: 100vh;
-  }
-  .inner { max-width: 1060px; margin: 0 auto; }
+  .wrap { font-family:var(--sans); background:var(--paper); color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.55; padding:clamp(1.2rem,3vw,2.4rem) 1.2rem 4rem; min-height:100vh; }
+  .inner { max-width:1060px; margin:0 auto; }
 
-  /* hero */
-  .hero { padding: clamp(0.5rem,3vw,2rem) 0 1.4rem; border-bottom: 1px solid var(--line); }
-  .brand {
-    font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.24em; text-transform: uppercase;
-    color: var(--accent-ink); display: flex; align-items: center; gap: 0.55rem; margin: 0 0 1rem;
-  }
-  .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent);
-    box-shadow: 0 0 0 4px var(--accent-soft); }
-  h1 {
-    font-size: clamp(2.1rem, 5.2vw, 3.5rem); line-height: 1.03; letter-spacing: -0.035em;
-    font-weight: 800; margin: 0 0 0.9rem; text-wrap: balance; max-width: 16ch;
-  }
-  h1 .g { color: var(--accent-ink); }
-  .lede { font-size: clamp(1rem, 2vw, 1.18rem); color: var(--muted); max-width: 52ch; margin: 0 0 1.6rem; text-wrap: pretty; }
+  .hero { padding:clamp(0.5rem,3vw,2rem) 0 1.4rem; border-bottom:1px solid var(--line); }
+  .brand { font-family:var(--mono); font-size:0.74rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--accent-ink); display:flex; align-items:center; gap:0.55rem; margin:0 0 1rem; }
+  .brand .dot { width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--accent-soft); }
+  h1 { font-size:clamp(2.1rem,5.2vw,3.5rem); line-height:1.03; letter-spacing:-0.035em; font-weight:800; margin:0 0 0.9rem; text-wrap:balance; max-width:16ch; }
+  h1 .g { color:var(--accent-ink); }
+  .lede { font-size:clamp(1rem,2vw,1.18rem); color:var(--muted); max-width:52ch; margin:0 0 1.6rem; text-wrap:pretty; }
+  .controls { display:flex; flex-wrap:wrap; align-items:center; gap:0.7rem 1rem; }
+  .filter-label { font-family:var(--mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); }
+  .chips { display:flex; flex-wrap:wrap; gap:0.45rem; }
+  .chip { font-family:var(--mono); font-size:0.82rem; border:1px solid var(--line); background:var(--card); color:var(--ink); padding:0.4rem 0.85rem; border-radius:100px; cursor:pointer; transition:all 0.18s ease; }
+  .chip:hover { border-color:var(--accent); }
+  .chip[aria-pressed="true"] { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .chip:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .count { color:var(--muted); font-family:var(--mono); font-size:0.8rem; margin-left:auto; }
+  .legend { display:flex; flex-wrap:wrap; gap:0.7rem 1.2rem; margin-top:1.1rem; font-family:var(--mono); font-size:0.76rem; color:var(--muted); }
+  .legend span { display:inline-flex; align-items:center; gap:0.4rem; }
+  .tagdot { width:10px; height:10px; border-radius:3px; display:inline-block; }
+  .td-claude { background:var(--claude); } .td-uni { background:var(--uni); }
 
-  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem 1rem; }
-  .filter-label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-  .chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-  .chip {
-    font-family: var(--mono); font-size: 0.82rem; border: 1px solid var(--line); background: var(--card);
-    color: var(--ink); padding: 0.4rem 0.85rem; border-radius: 100px; cursor: pointer;
-    transition: all 0.18s ease; display: inline-flex; align-items: center; gap: 0.4rem;
-  }
-  .chip:hover { border-color: var(--accent); }
-  .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .count { color: var(--muted); font-family: var(--mono); font-size: 0.8rem; margin-left: auto; }
+  .job { margin-top:2.6rem; }
+  .job-head { display:flex; align-items:baseline; gap:0.8rem; margin-bottom:1rem; flex-wrap:wrap; }
+  .job-head h2 { font-size:1.35rem; margin:0; letter-spacing:-0.02em; }
+  .job-head .jn { font-family:var(--mono); font-size:0.8rem; color:var(--accent-ink); }
+  .job-head p { margin:0; color:var(--muted); font-size:0.9rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(252px,1fr)); gap:0.9rem; }
 
-  /* legend */
-  .legend { display: flex; flex-wrap: wrap; gap: 0.7rem 1.2rem; margin-top: 1.1rem; font-family: var(--mono); font-size: 0.76rem; color: var(--muted); }
-  .legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
-  .tagdot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
-  .td-claude { background: var(--claude); } .td-uni { background: var(--uni); }
+  .plug { background:var(--card); border:1px solid var(--line); border-radius:13px; padding:1rem 1.05rem 1.05rem; box-shadow:var(--shadow); position:relative; display:flex; flex-direction:column; gap:0.55rem; transition:transform 0.2s ease,border-color 0.2s ease; text-decoration:none; color:inherit; cursor:pointer; }
+  .plug:hover { transform:translateY(-2px); border-color:var(--accent); }
+  .plug:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .plug.feat { border-color:var(--accent); box-shadow:var(--shadow),0 0 0 1px var(--accent); }
+  .plug-top { display:flex; align-items:center; justify-content:space-between; gap:0.5rem; }
+  .plug h3 { margin:0; font-size:1.04rem; letter-spacing:-0.01em; transition:color 0.15s ease; }
+  .plug h3::after { content:" ↗"; font-size:0.75em; color:var(--muted); opacity:0; transition:opacity 0.15s ease; }
+  .plug:hover h3 { color:var(--accent-ink); } .plug:hover h3::after { opacity:1; color:var(--accent-ink); }
+  .made { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent-ink); background:var(--accent-soft); padding:0.15rem 0.4rem; border-radius:5px; white-space:nowrap; }
+  .pop { font-family:var(--mono); font-size:0.66rem; letter-spacing:0.02em; color:var(--accent-ink); background:var(--accent-soft); padding:0.18rem 0.45rem; border-radius:6px; font-weight:600; }
+  .plug p { margin:0; font-size:0.9rem; color:var(--muted); line-height:1.5; flex:1; }
+  .tags { display:flex; flex-wrap:wrap; gap:0.35rem; align-items:center; }
+  .tag { font-family:var(--mono); font-size:0.68rem; letter-spacing:0.03em; padding:0.2rem 0.5rem; border-radius:6px; font-weight:600; }
+  .tag.claude { background:var(--claude-soft); color:var(--claude); }
+  .tag.uni { background:var(--uni-soft); color:var(--uni); }
+  .setup { font-family:var(--mono); font-size:0.68rem; color:var(--muted); margin-left:auto; }
+  .setup b { color:var(--accent-ink); font-weight:600; }
+  .install { font-family:var(--mono); font-size:0.71rem; color:var(--muted); background:var(--paper-2); border-radius:7px; padding:0.34rem 0.5rem; overflow-x:auto; white-space:nowrap; }
+  .install .p { color:var(--accent-ink); }
 
-  /* jobs */
-  .job { margin-top: 2.6rem; }
-  .job-head { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 1rem; flex-wrap: wrap; }
-  .job-head h2 { font-size: 1.35rem; margin: 0; letter-spacing: -0.02em; }
-  .job-head .jn { font-family: var(--mono); font-size: 0.8rem; color: var(--accent-ink); }
-  .job-head p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+  .stacks-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:0.9rem; }
+  .stack { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:1.1rem 1.2rem 1.2rem; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:0.55rem; }
+  .stack h3 { margin:0; font-size:1.12rem; letter-spacing:-0.01em; }
+  .stack .who { margin:0; color:var(--muted); font-size:0.88rem; }
+  .stack .members { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.25rem; }
+  .stack .m { font-family:var(--mono); font-size:0.74rem; text-decoration:none; color:var(--ink); border:1px solid var(--line); border-radius:100px; padding:0.24rem 0.6rem; transition:all 0.15s ease; }
+  .stack .m:hover { border-color:var(--accent); color:var(--accent-ink); }
 
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(248px, 1fr)); gap: 0.9rem; }
+  .empty { display:none; color:var(--muted); font-family:var(--mono); font-size:0.9rem; padding:1rem 0; }
+  footer { margin-top:3.4rem; padding-top:1.4rem; border-top:1px solid var(--line); color:var(--muted); font-size:0.82rem; line-height:1.6; }
+  footer b { color:var(--ink); } footer .mono { font-family:var(--mono); }
 
-  .plug {
-    background: var(--card); border: 1px solid var(--line); border-radius: 13px;
-    padding: 1rem 1.05rem 1.05rem; box-shadow: var(--shadow); position: relative;
-    display: flex; flex-direction: column; gap: 0.55rem; transition: transform 0.2s ease, border-color 0.2s ease;
-  }
-  .plug:hover { transform: translateY(-2px); border-color: var(--accent); }
-  .plug.feat { border-color: var(--accent); box-shadow: var(--shadow), 0 0 0 1px var(--accent); }
-  .plug-top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
-  .plug h3 { margin: 0; font-size: 1.04rem; letter-spacing: -0.01em; }
-  .made { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--accent-ink); background: var(--accent-soft); padding: 0.15rem 0.4rem; border-radius: 5px; white-space: nowrap; }
-  .plug p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; flex: 1; }
-  .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
-  .tag {
-    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.03em; padding: 0.2rem 0.5rem;
-    border-radius: 6px; font-weight: 600;
-  }
-  .tag.claude { background: var(--claude-soft); color: var(--claude); }
-  .tag.uni { background: var(--uni-soft); color: var(--uni); }
-  .setup { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); margin-left: auto; }
-  .setup b { color: var(--accent-ink); font-weight: 600; }
-
-  .empty { display: none; color: var(--muted); font-family: var(--mono); font-size: 0.9rem; padding: 1rem 0; }
-
-  footer { margin-top: 3.4rem; padding-top: 1.4rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.82rem; line-height: 1.6; }
-  footer b { color: var(--ink); }
-  footer .mono { font-family: var(--mono); }
-
-  .reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
-  .reveal.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .plug { transition: none; } }
+  .reveal { opacity:0; transform:translateY(12px); transition:opacity 0.5s ease,transform 0.5s ease; }
+  .reveal.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1;transform:none;transition:none;} .plug{transition:none;} }
 </style>
 
 <div class="wrap">
@@ -131,7 +92,6 @@
       <p class="brand"><span class="dot"></span> Plugboard · the cross-tool index</p>
       <h1>AI coding add-ons, <span class="g">by the job</span> you're doing.</h1>
       <p class="lede">A curated shelf of plugins &amp; MCP servers for AI dev tools — sorted by what you're trying to get done, not by which company made them. Filter by the tool you actually use.</p>
-
       <div class="controls">
         <span class="filter-label">Works in</span>
         <div class="chips" role="group" aria-label="Filter by tool">
@@ -142,274 +102,184 @@
         </div>
         <span class="count" id="count"></span>
       </div>
-
       <div class="legend">
         <span><i class="tagdot td-claude"></i> Claude plugin — installs in Claude Code</span>
         <span><i class="tagdot td-uni"></i> Universal (MCP) — works in any MCP-capable tool: Claude, Cursor, Windsurf…</span>
       </div>
     </header>
 
-    <main id="board">
+    <main id="board"></main>
+    <p class="empty" id="empty">No add-ons match that tool yet — try “All”.</p>
 
-      <!-- DEBUG -->
-      <section class="job">
-        <div class="job-head reveal"><span class="jn">01</span><h2>Debug &amp; fix</h2><p>Find why it broke, faster.</p></div>
-        <div class="grid">
-          <article class="plug feat reveal" data-tools="claude">
-            <div class="plug-top"><h3>rootcause</h3><span class="made">plumbgoat</span></div>
-            <p>Paste a stack trace, get the real root cause traced through your actual code — not a generic explanation of the exception.</p>
-            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>Sentry</h3></div>
-            <p>Pull real production errors and issues into your editor so the agent debugs against what actually happened.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="claude">
-            <div class="plug-top"><h3>greptile</h3></div>
-            <p>AI search and understanding across a large codebase — ask where something lives and why.</p>
-            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>account</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>Chrome DevTools</h3></div>
-            <p>Inspect and control a live Chrome to debug web apps — console, network, and DOM from the agent.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>none</b></span></div>
-          </article>
-        </div>
-      </section>
-
-      <!-- TEST -->
-      <section class="job">
-        <div class="job-head reveal"><span class="jn">02</span><h2>Test</h2><p>Cover the code you just wrote.</p></div>
-        <div class="grid">
-          <article class="plug feat reveal" data-tools="claude">
-            <div class="plug-top"><h3>testradar</h3><span class="made">plumbgoat</span></div>
-            <p>Finds the code you changed that has no test, then writes the missing tests in your project's own framework and style.</p>
-            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>Playwright</h3></div>
-            <p>Drive a real browser for end-to-end tests — click, type, and assert across pages under agent control.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>none</b></span></div>
-          </article>
-        </div>
-      </section>
-
-      <!-- SHIP -->
-      <section class="job">
-        <div class="job-head reveal"><span class="jn">03</span><h2>Ship &amp; review</h2><p>Get it merged without breaking things.</p></div>
-        <div class="grid">
-          <article class="plug reveal" data-tools="claude">
-            <div class="plug-top"><h3>code-review</h3></div>
-            <p>Automated pull-request review — flags correctness, security, and style issues before a human looks.</p>
-            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="claude">
-            <div class="plug-top"><h3>CodeRabbit</h3></div>
-            <p>An AI review partner that comments on your PRs with context-aware suggestions.</p>
-            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>account</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>GitHub</h3></div>
-            <p>Manage repos, pull requests, and issues directly — open PRs, read reviews, and link work.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>token</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="claude">
-            <div class="plug-top"><h3>commit-commands</h3></div>
-            <p>Git commit workflow helpers — stage, message, and structure commits without leaving the chat.</p>
-            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
-          </article>
-        </div>
-      </section>
-
-      <!-- INCIDENTS -->
-      <section class="job">
-        <div class="job-head reveal"><span class="jn">04</span><h2>Incidents &amp; ops</h2><p>When it's on fire, and after.</p></div>
-        <div class="grid">
-          <article class="plug feat reveal" data-tools="claude">
-            <div class="plug-top"><h3>postmortem</h3><span class="made">plumbgoat</span></div>
-            <p>Turns raw incident logs, traces, and chat into a complete blameless postmortem — timeline, root cause, action items.</p>
-            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>Datadog</h3></div>
-            <p>Query logs, metrics, and traces so the agent reasons over what your monitoring actually saw.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>Grafana</h3></div>
-            <p>Read dashboards and manage alerting — pull the panel that matters into the conversation.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>PagerDuty</h3></div>
-            <p>Incident context and correlation — who's on call, what's firing, and what's related.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
-          </article>
-        </div>
-      </section>
-
-      <!-- PLAN -->
-      <section class="job">
-        <div class="job-head reveal"><span class="jn">05</span><h2>Plan &amp; track</h2><p>Know where the work stands.</p></div>
-        <div class="grid">
-          <article class="plug feat reveal" data-tools="claude">
-            <div class="plug-top"><h3>sprint-report</h3><span class="made">plumbgoat</span></div>
-            <p>Your Jira sprint's real status rendered in-session — done, in-flight, stuck, and scope creep. Works on any Jira.</p>
-            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>token</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>Linear</h3></div>
-            <p>Read and update issues, cycles, and projects from where you're coding.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>Atlassian</h3></div>
-            <p>Jira &amp; Confluence — issues, boards, and docs, connected to your workflow.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>Notion</h3></div>
-            <p>Read and write workspace docs and databases without switching tabs.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
-          </article>
-        </div>
-      </section>
-
-      <!-- PROMPTS -->
-      <section class="job">
-        <div class="job-head reveal"><span class="jn">06</span><h2>Prompts &amp; context</h2><p>Feed the model the right things.</p></div>
-        <div class="grid">
-          <article class="plug feat reveal" data-tools="claude">
-            <div class="plug-top"><h3>prompt-forge</h3><span class="made">plumbgoat</span></div>
-            <p>Build, improve, and battle-test prompts against real inputs — then save the winners as reusable slash commands.</p>
-            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>Context7</h3></div>
-            <p>Pulls up-to-date library documentation into context so the agent codes against current APIs, not stale training.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>none</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="claude">
-            <div class="plug-top"><h3>claude-md-management</h3></div>
-            <p>Keep your CLAUDE.md tidy and current — the file that steers every session.</p>
-            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
-          </article>
-        </div>
-      </section>
-
-      <!-- DATA -->
-      <section class="job">
-        <div class="job-head reveal"><span class="jn">07</span><h2>Data &amp; backend</h2><p>Talk to your database directly.</p></div>
-        <div class="grid">
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>PostgreSQL</h3></div>
-            <p>Query and inspect your Postgres — schema, rows, and plans — from the editor.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>connection</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>MongoDB</h3></div>
-            <p>Run database operations and get optimization guidance against your collections.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>connection</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>BigQuery</h3></div>
-            <p>Query large datasets in natural language and get results without hand-writing SQL.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="universal">
-            <div class="plug-top"><h3>Firebase</h3></div>
-            <p>Manage your Firebase backend — data, auth, and functions — conversationally.</p>
-            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
-          </article>
-        </div>
-      </section>
-
-      <!-- BUILD -->
-      <section class="job">
-        <div class="job-head reveal"><span class="jn">08</span><h2>Build your own</h2><p>Make plugins, agents, and MCP servers.</p></div>
-        <div class="grid">
-          <article class="plug reveal" data-tools="claude">
-            <div class="plug-top"><h3>plugin-dev</h3></div>
-            <p>A toolkit for building Claude Code plugins — scaffolding, structure, and validation.</p>
-            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="claude">
-            <div class="plug-top"><h3>mcp-server-dev</h3></div>
-            <p>Design and build MCP servers — the universal connectors that work across every AI tool here.</p>
-            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
-          </article>
-          <article class="plug reveal" data-tools="claude">
-            <div class="plug-top"><h3>agent-sdk-dev</h3></div>
-            <p>Build custom agents on the Claude Agent SDK — the foundation under Claude Code itself.</p>
-            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
-          </article>
-        </div>
-      </section>
-
-      <p class="empty" id="empty">No add-ons match that tool yet — try “All”.</p>
-
-    </main>
+    <section class="job" id="stacks-sec">
+      <div class="job-head reveal"><span class="jn">✦</span><h2>Starter stacks</h2><p>Grab-and-go bundles for a kind of work.</p></div>
+      <div class="stacks-grid" id="stacks"></div>
+    </section>
 
     <footer>
-      <p><b>How this list works.</b> A curated selection, not an exhaustive dump — the point is to help you pick, not to list everything. <span class="mono">Universal (MCP)</span> add-ons run in any MCP-capable tool (Claude Code, Cursor, Windsurf, and more); <span class="mono">Claude</span> add-ons install in Claude Code. Descriptions are drawn from each tool's official listing; tool availability is best-effort and changes fast. Plugins marked <b>plumbgoat</b> are ours.</p>
-      <p class="mono" style="margin-top:0.8rem;">plugboard · curated for people who'd rather build than browse 2,000 listings</p>
+      <p><b>How this list works.</b> A curated selection, not an exhaustive dump — the point is to help you pick, not to list 9,000 things. <span class="mono">Universal (MCP)</span> add-ons run in any MCP-capable tool (Claude Code, Cursor, Windsurf, and more); <span class="mono">Claude</span> add-ons install in Claude Code. Descriptions come from each tool's official listing; install counts are approximate and point-in-time.</p>
+      <p style="margin-top:0.8rem;"><b>About the install lines.</b> They show the <em>entry</em> command. MCP servers usually need a URL or an <span class="mono">npx</span> target you'll find on the add-on's linked page; official-directory plugins install from Claude Code's <span class="mono">/plugin</span> browser. Add-ons marked <b>plumbgoat</b> are ours.</p>
+      <p class="mono" style="margin-top:0.8rem;">plugboard · curated for people who'd rather build than browse 9,000 listings</p>
     </footer>
 
   </div>
 </div>
 
 <script>
+  var JOBS = [
+    { mark:"★", title:"Power-ups & frameworks", blurb:"Broad, popular add-ons that reshape how you work.", items:[
+      { n:"Superpowers", t:"claude", u:"https://github.com/obra/superpowers", i:"/plugin marketplace add obra/superpowers", pop:"~752k", d:"The ecosystem's most-loved plugin — reframes Claude Code as a small dev team: brainstorming, spec-driven development, systematic debugging, red/green TDD, and review." },
+      { n:"Frontend Design", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install frontend-design", pop:"~829k", d:"Anthropic's own plugin for building production-grade UI — turns rough ideas into polished, real interfaces, not throwaway mockups." },
+      { n:"feature-dev", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install feature-dev", pop:"~89k", d:"A structured feature-development workflow — plan, build, verify — and one of the most-installed plugins in the official directory." },
+      { n:"Claude Mem", t:"claude", u:"https://github.com/anthropics/claude-plugins-community", d:"Long-term memory for Claude Code — captures and compresses your work across sessions, then reinjects the relevant context automatically next time." }
+    ]},
+    { mark:"01", title:"Debug & fix", blurb:"Find why it broke, faster.", items:[
+      { n:"rootcause", t:"claude", u:"https://github.com/plumbgoat/rootcause", i:"/plugin marketplace add plumbgoat/rootcause", made:1, d:"Paste a stack trace, get the real root cause traced through your actual code — not a generic explanation of the exception." },
+      { n:"Sentry", t:"universal", u:"https://sentry.io", i:"claude mcp add sentry", d:"Pull real production errors and issues into your editor so the agent debugs against what actually happened." },
+      { n:"greptile", t:"claude", u:"https://www.greptile.com", i:"/plugin install greptile", d:"AI search and understanding across a large codebase — ask where something lives and why." },
+      { n:"Chrome DevTools", t:"universal", u:"https://github.com/ChromeDevTools/chrome-devtools-mcp", i:"claude mcp add chrome-devtools", d:"Inspect and control a live Chrome to debug web apps — console, network, and DOM from the agent." }
+    ]},
+    { mark:"02", title:"Test", blurb:"Cover the code you just wrote.", items:[
+      { n:"testradar", t:"claude", u:"https://github.com/plumbgoat/testradar", i:"/plugin marketplace add plumbgoat/testradar", made:1, d:"Finds the code you changed that has no test, then writes the missing tests in your project's own framework and style." },
+      { n:"Playwright", t:"universal", u:"https://github.com/microsoft/playwright-mcp", i:"claude mcp add playwright", d:"Drive a real browser for end-to-end tests — click, type, and assert across pages under agent control." }
+    ]},
+    { mark:"03", title:"Ship & review", blurb:"Get it merged without breaking things.", items:[
+      { n:"code-review", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install code-review", d:"Automated pull-request review — flags correctness, security, and style issues before a human looks." },
+      { n:"CodeRabbit", t:"claude", u:"https://www.coderabbit.ai", i:"/plugin install coderabbit", d:"An AI review partner that comments on your PRs with context-aware suggestions." },
+      { n:"GitHub", t:"universal", u:"https://github.com/github/github-mcp-server", i:"claude mcp add github", d:"Manage repos, pull requests, and issues directly — open PRs, read reviews, and link work." },
+      { n:"GitLab", t:"universal", u:"https://gitlab.com", i:"claude mcp add gitlab", d:"The GitLab side of the same workflow — merge requests, pipelines, and issues from the editor." },
+      { n:"commit-commands", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install commit-commands", d:"Git commit workflow helpers — stage, message, and structure commits without leaving the chat." }
+    ]},
+    { mark:"04", title:"Incidents & ops", blurb:"When it's on fire, and after.", items:[
+      { n:"postmortem", t:"claude", u:"https://github.com/plumbgoat/postmortem", i:"/plugin marketplace add plumbgoat/postmortem", made:1, d:"Turns raw incident logs, traces, and chat into a complete blameless postmortem — timeline, root cause, action items." },
+      { n:"Datadog", t:"universal", u:"https://www.datadoghq.com", i:"claude mcp add datadog", d:"Query logs, metrics, and traces so the agent reasons over what your monitoring actually saw." },
+      { n:"Grafana", t:"universal", u:"https://grafana.com", i:"claude mcp add grafana", d:"Read dashboards and manage alerting — pull the panel that matters into the conversation." },
+      { n:"PagerDuty", t:"universal", u:"https://www.pagerduty.com", i:"claude mcp add pagerduty", d:"Incident context and correlation — who's on call, what's firing, and what's related." },
+      { n:"PostHog", t:"universal", u:"https://posthog.com", i:"claude mcp add posthog", d:"Product analytics and feature flags — ask why a metric moved and get the data behind it." },
+      { n:"Honeycomb", t:"universal", u:"https://www.honeycomb.io", i:"claude mcp add honeycomb", d:"Observability and SLOs — trace a slow request through your services to the span that hurt." }
+    ]},
+    { mark:"05", title:"Plan & track", blurb:"Know where the work stands.", items:[
+      { n:"sprint-report", t:"claude", u:"https://github.com/plumbgoat/sprint-report", i:"/plugin marketplace add plumbgoat/sprint-report", made:1, d:"Your Jira sprint's real status rendered in-session — done, in-flight, stuck, and scope creep. Works on any Jira." },
+      { n:"Linear", t:"universal", u:"https://linear.app", i:"claude mcp add linear", d:"Read and update issues, cycles, and projects from where you're coding." },
+      { n:"Atlassian", t:"universal", u:"https://www.atlassian.com/software/jira", i:"claude mcp add atlassian", d:"Jira & Confluence — issues, boards, and docs, connected to your workflow." },
+      { n:"Notion", t:"universal", u:"https://www.notion.so", i:"claude mcp add notion", d:"Read and write workspace docs and databases without switching tabs." },
+      { n:"Slack", t:"universal", u:"https://slack.com", i:"claude mcp add slack", d:"Read and post to channels — pull a thread's context in, or send an update out." },
+      { n:"Asana", t:"universal", u:"https://asana.com", i:"claude mcp add asana", d:"Manage tasks and projects conversationally, tied to the work you're shipping." }
+    ]},
+    { mark:"06", title:"Prompts & context", blurb:"Feed the model the right things.", items:[
+      { n:"prompt-forge", t:"claude", u:"https://github.com/plumbgoat/prompt-forge", i:"/plugin marketplace add plumbgoat/prompt-forge", made:1, d:"Build, improve, and battle-test prompts against real inputs — then save the winners as reusable slash commands." },
+      { n:"Context7", t:"universal", u:"https://github.com/upstash/context7", i:"claude mcp add context7", d:"Pulls up-to-date library documentation into context so the agent codes against current APIs, not stale training." },
+      { n:"claude-md-management", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install claude-md-management", d:"Keep your CLAUDE.md tidy and current — the file that steers every session." }
+    ]},
+    { mark:"07", title:"Data & backend", blurb:"Talk to your database directly.", items:[
+      { n:"PostgreSQL", t:"universal", u:"https://github.com/modelcontextprotocol/servers", i:"claude mcp add postgres", d:"Query and inspect your Postgres — schema, rows, and plans — from the editor." },
+      { n:"MongoDB", t:"universal", u:"https://www.mongodb.com", i:"claude mcp add mongodb", d:"Run database operations and get optimization guidance against your collections." },
+      { n:"BigQuery", t:"universal", u:"https://cloud.google.com/bigquery", i:"claude mcp add bigquery", d:"Query large datasets in natural language and get results without hand-writing SQL." },
+      { n:"Firebase", t:"universal", u:"https://firebase.google.com", i:"claude mcp add firebase", d:"Manage your Firebase backend — data, auth, and functions — conversationally." },
+      { n:"Neon", t:"universal", u:"https://neon.tech", i:"claude mcp add neon", d:"Serverless Postgres — spin up branches, run queries, and manage projects from the editor." },
+      { n:"Pinecone", t:"universal", u:"https://www.pinecone.io", i:"claude mcp add pinecone", d:"Vector database operations — build and query embeddings for RAG and semantic search." },
+      { n:"Convex", t:"universal", u:"https://www.convex.dev", i:"claude mcp add convex", d:"A full-stack reactive backend — data, functions, and real-time sync in one place." },
+      { n:"ClickHouse", t:"universal", u:"https://clickhouse.com", i:"claude mcp add clickhouse", d:"Query a ClickHouse column store — fast analytics over huge event tables." }
+    ]},
+    { mark:"08", title:"Security & auth", blurb:"Catch holes before they ship.", items:[
+      { n:"Aikido", t:"claude", u:"https://www.aikido.dev", i:"/plugin install aikido", d:"SAST, secret, and infrastructure scanning — flags vulnerabilities as the agent writes code." },
+      { n:"42Crunch", t:"claude", u:"https://42crunch.com", i:"/plugin install 42crunch-api-security-testing", d:"Automated API security testing and audit — hardens your endpoints against the OWASP API risks." },
+      { n:"Auth0", t:"universal", u:"https://auth0.com", i:"claude mcp add auth0", d:"Add enterprise-grade authentication without hand-rolling it — login, sessions, and roles." },
+      { n:"security-guidance", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install security-guidance", d:"Anthropic's own security best-practice guidance, applied to the code you're writing." }
+    ]},
+    { mark:"09", title:"Design & assets", blurb:"Bring design into the build.", items:[
+      { n:"Figma", t:"universal", u:"https://www.figma.com", i:"claude mcp add figma", d:"Pull real design context — components, tokens, and specs — into the code you're generating." },
+      { n:"Canva", t:"universal", u:"https://www.canva.com", i:"claude mcp add canva", d:"Create, edit, review, and resize Canva designs without leaving your workflow." },
+      { n:"Cloudinary", t:"universal", u:"https://cloudinary.com", i:"claude mcp add cloudinary", d:"Manage and transform image and video assets — upload, optimize, and deliver from code." }
+    ]},
+    { mark:"10", title:"Deploy & infra", blurb:"Get it live and keep it up.", items:[
+      { n:"Cloudflare", t:"universal", u:"https://www.cloudflare.com", i:"claude mcp add cloudflare", d:"Build and deploy Workers, Durable Objects, and edge apps — and tune web performance." },
+      { n:"Vercel", t:"universal", u:"https://vercel.com", i:"claude mcp add vercel", d:"Deploy frontend apps, inspect preview builds, and manage projects from the editor." },
+      { n:"Netlify", t:"universal", u:"https://www.netlify.com", i:"claude mcp add netlify", d:"Ship sites and serverless functions, and manage deploys conversationally." }
+    ]},
+    { mark:"11", title:"Search & research", blurb:"Give the model the live web.", items:[
+      { n:"Exa", t:"universal", u:"https://exa.ai", i:"claude mcp add exa", d:"AI-native web search built for agents — high-quality results and content, not link spam." },
+      { n:"Firecrawl", t:"universal", u:"https://www.firecrawl.dev", i:"claude mcp add firecrawl", d:"Scrape and crawl any site into clean, structured markdown the model can actually use." },
+      { n:"Perplexity", t:"universal", u:"https://www.perplexity.ai", i:"claude mcp add perplexity", d:"Ask a research question and get a sourced, up-to-date answer pulled into your session." }
+    ]},
+    { mark:"12", title:"Build your own", blurb:"Make plugins, agents, and MCP servers.", items:[
+      { n:"plugin-dev", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install plugin-dev", d:"A toolkit for building Claude Code plugins — scaffolding, structure, and validation." },
+      { n:"mcp-server-dev", t:"universal", u:"https://modelcontextprotocol.io", d:"Design and build MCP servers — the universal connectors that work across every AI tool here." },
+      { n:"agent-sdk-dev", t:"claude", u:"https://docs.claude.com/en/api/agent-sdk/overview", d:"Build custom agents on the Claude Agent SDK — the foundation under Claude Code itself." }
+    ]}
+  ];
+
+  var STACKS = [
+    { n:"The solo indie hacker", who:"Ship a product alone, fast.", m:["Superpowers","rootcause","testradar","Context7","Vercel"] },
+    { n:"The backend team", who:"Services, reviews, and data.", m:["sprint-report","code-review","GitHub","PostgreSQL","Sentry"] },
+    { n:"The on-call SRE", who:"Keep prod alive, learn from incidents.", m:["postmortem","Datadog","PagerDuty","Grafana","Honeycomb"] },
+    { n:"Frontend & product", who:"Build and measure UIs.", m:["Frontend Design","Figma","Playwright","PostHog","Netlify"] }
+  ];
+
   (function () {
-    var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
-    var plugs = Array.prototype.slice.call(document.querySelectorAll('.plug'));
-    var jobs = Array.prototype.slice.call(document.querySelectorAll('.job'));
-    var countEl = document.getElementById('count');
-    var emptyEl = document.getElementById('empty');
+    var esc = function (s) { return String(s).replace(/[&<>]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]; }); };
+    var urlByName = {};
+    JOBS.forEach(function (j) { j.items.forEach(function (it) { urlByName[it.n] = it.u; }); });
 
-    // universal add-ons work everywhere; claude-only add-ons work only in Claude Code
-    function matches(tools, filter) {
-      if (filter === 'all') return true;
-      if (tools === 'universal') return true;         // runs in any MCP tool
-      if (tools === 'claude') return filter === 'claude';
-      return false;
-    }
+    var board = document.getElementById("board");
+    board.innerHTML = JOBS.map(function (j) {
+      var cards = j.items.map(function (it) {
+        var right = it.made ? '<span class="made">plumbgoat</span>' : (it.pop ? '<span class="pop">' + esc(it.pop) + '</span>' : "");
+        var tag = it.t === "claude" ? '<span class="tag claude">Claude</span>' : '<span class="tag uni">Universal</span>';
+        var inst = it.i ? '<div class="install"><span class="p">$</span> ' + esc(it.i) + '</div>' : '<div class="install" style="color:var(--muted)">setup on the linked page ↗</div>';
+        return '<a class="plug ' + (it.made ? "feat " : "") + 'reveal" data-tools="' + it.t + '" href="' + it.u + '" target="_blank" rel="noopener">' +
+          '<div class="plug-top"><h3>' + esc(it.n) + '</h3>' + right + '</div>' +
+          '<p>' + esc(it.d) + '</p>' + inst +
+          '<div class="tags">' + tag + '</div></a>';
+      }).join("");
+      return '<section class="job"><div class="job-head reveal"><span class="jn">' + j.mark + '</span><h2>' + esc(j.title) + '</h2><p>' + esc(j.blurb) + '</p></div><div class="grid">' + cards + '</div></section>';
+    }).join("");
 
-    function apply(filter) {
+    document.getElementById("stacks").innerHTML = STACKS.map(function (s) {
+      var members = s.m.map(function (name) {
+        var u = urlByName[name] || "#";
+        return '<a class="m" href="' + u + '" target="_blank" rel="noopener">' + esc(name) + '</a>';
+      }).join("");
+      return '<div class="stack reveal"><h3>' + esc(s.n) + '</h3><p class="who">' + esc(s.who) + '</p><div class="members">' + members + '</div></div>';
+    }).join("");
+
+    // filter
+    var chips = [].slice.call(document.querySelectorAll(".chip"));
+    var countEl = document.getElementById("count");
+    var emptyEl = document.getElementById("empty");
+    function apply(f) {
       var shown = 0;
-      plugs.forEach(function (p) {
-        var ok = matches(p.getAttribute('data-tools'), filter);
-        p.style.display = ok ? '' : 'none';
+      [].forEach.call(document.querySelectorAll(".plug"), function (p) {
+        var t = p.getAttribute("data-tools");
+        var ok = f === "all" || t === "universal" || (t === "claude" && f === "claude");
+        p.style.display = ok ? "" : "none";
         if (ok) shown++;
       });
-      // hide a job section if it has no visible cards
-      jobs.forEach(function (j) {
+      [].forEach.call(document.querySelectorAll("#board .job"), function (j) {
         var any = j.querySelectorAll('.plug:not([style*="display: none"])').length > 0;
-        j.style.display = any ? '' : 'none';
+        j.style.display = any ? "" : "none";
       });
-      countEl.textContent = shown + ' add-on' + (shown === 1 ? '' : 's');
-      emptyEl.style.display = shown === 0 ? 'block' : 'none';
+      countEl.textContent = shown + " add-on" + (shown === 1 ? "" : "s");
+      emptyEl.style.display = shown === 0 ? "block" : "none";
     }
-
     chips.forEach(function (c) {
-      c.addEventListener('click', function () {
-        chips.forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
-        c.setAttribute('aria-pressed', 'true');
-        apply(c.getAttribute('data-filter'));
+      c.addEventListener("click", function () {
+        chips.forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+        c.setAttribute("aria-pressed", "true");
+        apply(c.getAttribute("data-filter"));
       });
     });
+    apply("all");
 
-    apply('all');
-
-    // reveal on scroll
-    var els = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      els.forEach(function (e) { e.classList.add('in'); });
+    // reveal
+    var els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      [].forEach.call(els, function (e) { e.classList.add("in"); });
     } else {
       var io = new IntersectionObserver(function (ents) {
-        ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+        ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
       }, { threshold: 0.1 });
-      els.forEach(function (e) { io.observe(e); });
+      [].forEach.call(els, function (e) { io.observe(e); });
     }
   })();
 </script>
