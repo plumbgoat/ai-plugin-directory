@@ -1,0 +1,415 @@
+<style>
+  :root {
+    --paper: #F6F7F6;
+    --paper-2: #ECEEEC;
+    --ink: #191C1B;
+    --muted: #64706C;
+    --line: #DCE0DD;
+    --card: #FFFFFF;
+    --accent: #0C8C7C;
+    --accent-ink: #0A7A6C;
+    --accent-soft: rgba(12, 140, 124, 0.10);
+    --claude: #C0562F;
+    --claude-soft: rgba(192, 86, 47, 0.12);
+    --uni: #6D54E0;
+    --uni-soft: rgba(109, 84, 224, 0.12);
+    --shadow: 0 1px 2px rgba(25,28,27,0.04), 0 10px 30px -20px rgba(25,28,27,0.30);
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0F1211; --paper-2: #161A18; --ink: #E7EBE9; --muted: #8C978F;
+      --line: #262C29; --card: #171B19; --accent: #24B3A0; --accent-ink: #35C4B0;
+      --accent-soft: rgba(36, 179, 160, 0.13);
+      --claude: #E67C51; --claude-soft: rgba(230, 124, 81, 0.15);
+      --uni: #9986F5; --uni-soft: rgba(153, 134, 245, 0.15);
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 14px 40px -22px rgba(0,0,0,0.7);
+    }
+  }
+  :root[data-theme="light"] {
+    --paper:#F6F7F6;--paper-2:#ECEEEC;--ink:#191C1B;--muted:#64706C;--line:#DCE0DD;--card:#FFFFFF;
+    --accent:#0C8C7C;--accent-ink:#0A7A6C;--accent-soft:rgba(12,140,124,0.10);
+    --claude:#C0562F;--claude-soft:rgba(192,86,47,0.12);--uni:#6D54E0;--uni-soft:rgba(109,84,224,0.12);
+    --shadow:0 1px 2px rgba(25,28,27,0.04), 0 10px 30px -20px rgba(25,28,27,0.30);
+  }
+  :root[data-theme="dark"] {
+    --paper:#0F1211;--paper-2:#161A18;--ink:#E7EBE9;--muted:#8C978F;--line:#262C29;--card:#171B19;
+    --accent:#24B3A0;--accent-ink:#35C4B0;--accent-soft:rgba(36,179,160,0.13);
+    --claude:#E67C51;--claude-soft:rgba(230,124,81,0.15);--uni:#9986F5;--uni-soft:rgba(153,134,245,0.15);
+    --shadow:0 1px 2px rgba(0,0,0,0.3), 0 14px 40px -22px rgba(0,0,0,0.7);
+  }
+
+  * { box-sizing: border-box; }
+  .wrap {
+    font-family: var(--sans); background: var(--paper); color: var(--ink);
+    -webkit-font-smoothing: antialiased; line-height: 1.55;
+    padding: clamp(1.2rem, 3vw, 2.4rem) 1.2rem 4rem; min-height: 100vh;
+  }
+  .inner { max-width: 1060px; margin: 0 auto; }
+
+  /* hero */
+  .hero { padding: clamp(0.5rem,3vw,2rem) 0 1.4rem; border-bottom: 1px solid var(--line); }
+  .brand {
+    font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--accent-ink); display: flex; align-items: center; gap: 0.55rem; margin: 0 0 1rem;
+  }
+  .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft); }
+  h1 {
+    font-size: clamp(2.1rem, 5.2vw, 3.5rem); line-height: 1.03; letter-spacing: -0.035em;
+    font-weight: 800; margin: 0 0 0.9rem; text-wrap: balance; max-width: 16ch;
+  }
+  h1 .g { color: var(--accent-ink); }
+  .lede { font-size: clamp(1rem, 2vw, 1.18rem); color: var(--muted); max-width: 52ch; margin: 0 0 1.6rem; text-wrap: pretty; }
+
+  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem 1rem; }
+  .filter-label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .chip {
+    font-family: var(--mono); font-size: 0.82rem; border: 1px solid var(--line); background: var(--card);
+    color: var(--ink); padding: 0.4rem 0.85rem; border-radius: 100px; cursor: pointer;
+    transition: all 0.18s ease; display: inline-flex; align-items: center; gap: 0.4rem;
+  }
+  .chip:hover { border-color: var(--accent); }
+  .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .count { color: var(--muted); font-family: var(--mono); font-size: 0.8rem; margin-left: auto; }
+
+  /* legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 0.7rem 1.2rem; margin-top: 1.1rem; font-family: var(--mono); font-size: 0.76rem; color: var(--muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .tagdot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  .td-claude { background: var(--claude); } .td-uni { background: var(--uni); }
+
+  /* jobs */
+  .job { margin-top: 2.6rem; }
+  .job-head { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .job-head h2 { font-size: 1.35rem; margin: 0; letter-spacing: -0.02em; }
+  .job-head .jn { font-family: var(--mono); font-size: 0.8rem; color: var(--accent-ink); }
+  .job-head p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(248px, 1fr)); gap: 0.9rem; }
+
+  .plug {
+    background: var(--card); border: 1px solid var(--line); border-radius: 13px;
+    padding: 1rem 1.05rem 1.05rem; box-shadow: var(--shadow); position: relative;
+    display: flex; flex-direction: column; gap: 0.55rem; transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .plug:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .plug.feat { border-color: var(--accent); box-shadow: var(--shadow), 0 0 0 1px var(--accent); }
+  .plug-top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+  .plug h3 { margin: 0; font-size: 1.04rem; letter-spacing: -0.01em; }
+  .made { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent-ink); background: var(--accent-soft); padding: 0.15rem 0.4rem; border-radius: 5px; white-space: nowrap; }
+  .plug p { margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; flex: 1; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+  .tag {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.03em; padding: 0.2rem 0.5rem;
+    border-radius: 6px; font-weight: 600;
+  }
+  .tag.claude { background: var(--claude-soft); color: var(--claude); }
+  .tag.uni { background: var(--uni-soft); color: var(--uni); }
+  .setup { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); margin-left: auto; }
+  .setup b { color: var(--accent-ink); font-weight: 600; }
+
+  .empty { display: none; color: var(--muted); font-family: var(--mono); font-size: 0.9rem; padding: 1rem 0; }
+
+  footer { margin-top: 3.4rem; padding-top: 1.4rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.82rem; line-height: 1.6; }
+  footer b { color: var(--ink); }
+  footer .mono { font-family: var(--mono); }
+
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .plug { transition: none; } }
+</style>
+
+<div class="wrap">
+  <div class="inner">
+
+    <header class="hero">
+      <p class="brand"><span class="dot"></span> Plugboard · the cross-tool index</p>
+      <h1>AI coding add-ons, <span class="g">by the job</span> you're doing.</h1>
+      <p class="lede">A curated shelf of plugins &amp; MCP servers for AI dev tools — sorted by what you're trying to get done, not by which company made them. Filter by the tool you actually use.</p>
+
+      <div class="controls">
+        <span class="filter-label">Works in</span>
+        <div class="chips" role="group" aria-label="Filter by tool">
+          <button class="chip" data-filter="all" aria-pressed="true">All</button>
+          <button class="chip" data-filter="claude" aria-pressed="false">Claude Code</button>
+          <button class="chip" data-filter="cursor" aria-pressed="false">Cursor</button>
+          <button class="chip" data-filter="windsurf" aria-pressed="false">Windsurf</button>
+        </div>
+        <span class="count" id="count"></span>
+      </div>
+
+      <div class="legend">
+        <span><i class="tagdot td-claude"></i> Claude plugin — installs in Claude Code</span>
+        <span><i class="tagdot td-uni"></i> Universal (MCP) — works in any MCP-capable tool: Claude, Cursor, Windsurf…</span>
+      </div>
+    </header>
+
+    <main id="board">
+
+      <!-- DEBUG -->
+      <section class="job">
+        <div class="job-head reveal"><span class="jn">01</span><h2>Debug &amp; fix</h2><p>Find why it broke, faster.</p></div>
+        <div class="grid">
+          <article class="plug feat reveal" data-tools="claude">
+            <div class="plug-top"><h3>rootcause</h3><span class="made">plumbgoat</span></div>
+            <p>Paste a stack trace, get the real root cause traced through your actual code — not a generic explanation of the exception.</p>
+            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>Sentry</h3></div>
+            <p>Pull real production errors and issues into your editor so the agent debugs against what actually happened.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="claude">
+            <div class="plug-top"><h3>greptile</h3></div>
+            <p>AI search and understanding across a large codebase — ask where something lives and why.</p>
+            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>account</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>Chrome DevTools</h3></div>
+            <p>Inspect and control a live Chrome to debug web apps — console, network, and DOM from the agent.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>none</b></span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- TEST -->
+      <section class="job">
+        <div class="job-head reveal"><span class="jn">02</span><h2>Test</h2><p>Cover the code you just wrote.</p></div>
+        <div class="grid">
+          <article class="plug feat reveal" data-tools="claude">
+            <div class="plug-top"><h3>testradar</h3><span class="made">plumbgoat</span></div>
+            <p>Finds the code you changed that has no test, then writes the missing tests in your project's own framework and style.</p>
+            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>Playwright</h3></div>
+            <p>Drive a real browser for end-to-end tests — click, type, and assert across pages under agent control.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>none</b></span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SHIP -->
+      <section class="job">
+        <div class="job-head reveal"><span class="jn">03</span><h2>Ship &amp; review</h2><p>Get it merged without breaking things.</p></div>
+        <div class="grid">
+          <article class="plug reveal" data-tools="claude">
+            <div class="plug-top"><h3>code-review</h3></div>
+            <p>Automated pull-request review — flags correctness, security, and style issues before a human looks.</p>
+            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="claude">
+            <div class="plug-top"><h3>CodeRabbit</h3></div>
+            <p>An AI review partner that comments on your PRs with context-aware suggestions.</p>
+            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>account</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>GitHub</h3></div>
+            <p>Manage repos, pull requests, and issues directly — open PRs, read reviews, and link work.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>token</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="claude">
+            <div class="plug-top"><h3>commit-commands</h3></div>
+            <p>Git commit workflow helpers — stage, message, and structure commits without leaving the chat.</p>
+            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- INCIDENTS -->
+      <section class="job">
+        <div class="job-head reveal"><span class="jn">04</span><h2>Incidents &amp; ops</h2><p>When it's on fire, and after.</p></div>
+        <div class="grid">
+          <article class="plug feat reveal" data-tools="claude">
+            <div class="plug-top"><h3>postmortem</h3><span class="made">plumbgoat</span></div>
+            <p>Turns raw incident logs, traces, and chat into a complete blameless postmortem — timeline, root cause, action items.</p>
+            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>Datadog</h3></div>
+            <p>Query logs, metrics, and traces so the agent reasons over what your monitoring actually saw.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>Grafana</h3></div>
+            <p>Read dashboards and manage alerting — pull the panel that matters into the conversation.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>PagerDuty</h3></div>
+            <p>Incident context and correlation — who's on call, what's firing, and what's related.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PLAN -->
+      <section class="job">
+        <div class="job-head reveal"><span class="jn">05</span><h2>Plan &amp; track</h2><p>Know where the work stands.</p></div>
+        <div class="grid">
+          <article class="plug feat reveal" data-tools="claude">
+            <div class="plug-top"><h3>sprint-report</h3><span class="made">plumbgoat</span></div>
+            <p>Your Jira sprint's real status rendered in-session — done, in-flight, stuck, and scope creep. Works on any Jira.</p>
+            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>token</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>Linear</h3></div>
+            <p>Read and update issues, cycles, and projects from where you're coding.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>Atlassian</h3></div>
+            <p>Jira &amp; Confluence — issues, boards, and docs, connected to your workflow.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>Notion</h3></div>
+            <p>Read and write workspace docs and databases without switching tabs.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROMPTS -->
+      <section class="job">
+        <div class="job-head reveal"><span class="jn">06</span><h2>Prompts &amp; context</h2><p>Feed the model the right things.</p></div>
+        <div class="grid">
+          <article class="plug feat reveal" data-tools="claude">
+            <div class="plug-top"><h3>prompt-forge</h3><span class="made">plumbgoat</span></div>
+            <p>Build, improve, and battle-test prompts against real inputs — then save the winners as reusable slash commands.</p>
+            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>Context7</h3></div>
+            <p>Pulls up-to-date library documentation into context so the agent codes against current APIs, not stale training.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>none</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="claude">
+            <div class="plug-top"><h3>claude-md-management</h3></div>
+            <p>Keep your CLAUDE.md tidy and current — the file that steers every session.</p>
+            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- DATA -->
+      <section class="job">
+        <div class="job-head reveal"><span class="jn">07</span><h2>Data &amp; backend</h2><p>Talk to your database directly.</p></div>
+        <div class="grid">
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>PostgreSQL</h3></div>
+            <p>Query and inspect your Postgres — schema, rows, and plans — from the editor.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>connection</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>MongoDB</h3></div>
+            <p>Run database operations and get optimization guidance against your collections.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>connection</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>BigQuery</h3></div>
+            <p>Query large datasets in natural language and get results without hand-writing SQL.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="universal">
+            <div class="plug-top"><h3>Firebase</h3></div>
+            <p>Manage your Firebase backend — data, auth, and functions — conversationally.</p>
+            <div class="tags"><span class="tag uni">Universal</span><span class="setup">setup: <b>account</b></span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- BUILD -->
+      <section class="job">
+        <div class="job-head reveal"><span class="jn">08</span><h2>Build your own</h2><p>Make plugins, agents, and MCP servers.</p></div>
+        <div class="grid">
+          <article class="plug reveal" data-tools="claude">
+            <div class="plug-top"><h3>plugin-dev</h3></div>
+            <p>A toolkit for building Claude Code plugins — scaffolding, structure, and validation.</p>
+            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="claude">
+            <div class="plug-top"><h3>mcp-server-dev</h3></div>
+            <p>Design and build MCP servers — the universal connectors that work across every AI tool here.</p>
+            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
+          </article>
+          <article class="plug reveal" data-tools="claude">
+            <div class="plug-top"><h3>agent-sdk-dev</h3></div>
+            <p>Build custom agents on the Claude Agent SDK — the foundation under Claude Code itself.</p>
+            <div class="tags"><span class="tag claude">Claude</span><span class="setup">setup: <b>none</b></span></div>
+          </article>
+        </div>
+      </section>
+
+      <p class="empty" id="empty">No add-ons match that tool yet — try “All”.</p>
+
+    </main>
+
+    <footer>
+      <p><b>How this list works.</b> A curated selection, not an exhaustive dump — the point is to help you pick, not to list everything. <span class="mono">Universal (MCP)</span> add-ons run in any MCP-capable tool (Claude Code, Cursor, Windsurf, and more); <span class="mono">Claude</span> add-ons install in Claude Code. Descriptions are drawn from each tool's official listing; tool availability is best-effort and changes fast. Plugins marked <b>plumbgoat</b> are ours.</p>
+      <p class="mono" style="margin-top:0.8rem;">plugboard · curated for people who'd rather build than browse 2,000 listings</p>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+    var plugs = Array.prototype.slice.call(document.querySelectorAll('.plug'));
+    var jobs = Array.prototype.slice.call(document.querySelectorAll('.job'));
+    var countEl = document.getElementById('count');
+    var emptyEl = document.getElementById('empty');
+
+    // universal add-ons work everywhere; claude-only add-ons work only in Claude Code
+    function matches(tools, filter) {
+      if (filter === 'all') return true;
+      if (tools === 'universal') return true;         // runs in any MCP tool
+      if (tools === 'claude') return filter === 'claude';
+      return false;
+    }
+
+    function apply(filter) {
+      var shown = 0;
+      plugs.forEach(function (p) {
+        var ok = matches(p.getAttribute('data-tools'), filter);
+        p.style.display = ok ? '' : 'none';
+        if (ok) shown++;
+      });
+      // hide a job section if it has no visible cards
+      jobs.forEach(function (j) {
+        var any = j.querySelectorAll('.plug:not([style*="display: none"])').length > 0;
+        j.style.display = any ? '' : 'none';
+      });
+      countEl.textContent = shown + ' add-on' + (shown === 1 ? '' : 's');
+      emptyEl.style.display = shown === 0 ? 'block' : 'none';
+    }
+
+    chips.forEach(function (c) {
+      c.addEventListener('click', function () {
+        chips.forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+        c.setAttribute('aria-pressed', 'true');
+        apply(c.getAttribute('data-filter'));
+      });
+    });
+
+    apply('all');
+
+    // reveal on scroll
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach(function (e) { e.classList.add('in'); });
+    } else {
+      var io = new IntersectionObserver(function (ents) {
+        ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: 0.1 });
+      els.forEach(function (e) { io.observe(e); });
+    }
+  })();
+</script>
