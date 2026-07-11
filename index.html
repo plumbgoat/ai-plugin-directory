@@ -43,6 +43,10 @@
   .btn-share { background:var(--card); color:var(--ink); }
   .btn-share:hover { border-color:var(--accent); color:var(--accent-ink); }
   .star-count { font-family:var(--mono); font-weight:700; background:rgba(255,255,255,0.22); padding:0.05rem 0.5rem; border-radius:100px; font-size:0.82rem; }
+  .searchbar { margin:0 0 1rem; }
+  .search { font-family:var(--sans); font-size:0.95rem; width:100%; max-width:420px; padding:0.6rem 1rem; border:1px solid var(--line); border-radius:100px; background:var(--card); color:var(--ink); }
+  .search::placeholder { color:var(--muted); }
+  .search:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
   .star-note { font-size:0.9rem; color:var(--muted); margin:1.6rem 0 0; }
   .star-note a { color:var(--accent-ink); text-decoration:none; font-weight:600; }
   .star-note a:hover { text-decoration:underline; }
@@ -105,6 +109,10 @@
       <div class="cta-row">
         <a class="btn btn-star" href="https://github.com/plumbgoat/ai-plugin-directory" target="_blank" rel="noopener">★ Star on GitHub <span class="star-count" id="stars">—</span></a>
         <button class="btn btn-share" id="shareBtn" type="button">Share ↗</button>
+        <a class="btn btn-share" id="suggestBtn" href="https://github.com/plumbgoat/ai-plugin-directory/issues/new" target="_blank" rel="noopener">＋ Suggest an add-on</a>
+      </div>
+      <div class="searchbar">
+        <input type="search" class="search" id="search" placeholder="Search add-ons — e.g. postgres, testing, deploy…" aria-label="Search add-ons">
       </div>
       <div class="controls">
         <span class="filter-label">Works in</span>
@@ -242,7 +250,8 @@
         var right = it.made ? '<span class="made">plumbgoat</span>' : (it.pop ? '<span class="pop">' + esc(it.pop) + '</span>' : "");
         var tag = it.t === "claude" ? '<span class="tag claude">Claude</span>' : '<span class="tag uni">Universal</span>';
         var inst = it.i ? '<div class="install"><span class="p">$</span> ' + esc(it.i) + '</div>' : '<div class="install" style="color:var(--muted)">setup on the linked page ↗</div>';
-        return '<a class="plug ' + (it.made ? "feat " : "") + 'reveal" data-tools="' + it.t + '" href="' + it.u + '" target="_blank" rel="noopener">' +
+        var srch = (it.n + " " + it.d).toLowerCase().replace(/"/g, "");
+        return '<a class="plug ' + (it.made ? "feat " : "") + 'reveal" data-tools="' + it.t + '" data-search="' + srch + '" href="' + it.u + '" target="_blank" rel="noopener">' +
           '<div class="plug-top"><h3>' + esc(it.n) + '</h3>' + right + '</div>' +
           '<p>' + esc(it.d) + '</p>' + inst +
           '<div class="tags">' + tag + '</div></a>';
@@ -258,15 +267,19 @@
       return '<div class="stack reveal"><h3>' + esc(s.n) + '</h3><p class="who">' + esc(s.who) + '</p><div class="members">' + members + '</div></div>';
     }).join("");
 
-    // filter
+    // filter + search
     var chips = [].slice.call(document.querySelectorAll(".chip"));
     var countEl = document.getElementById("count");
     var emptyEl = document.getElementById("empty");
-    function apply(f) {
+    var searchEl = document.getElementById("search");
+    var curFilter = "all", curQuery = "";
+    function apply() {
       var shown = 0;
       [].forEach.call(document.querySelectorAll(".plug"), function (p) {
         var t = p.getAttribute("data-tools");
-        var ok = f === "all" || t === "universal" || (t === "claude" && f === "claude");
+        var okType = curFilter === "all" || t === "universal" || (t === "claude" && curFilter === "claude");
+        var okSearch = !curQuery || (p.getAttribute("data-search") || "").indexOf(curQuery) !== -1;
+        var ok = okType && okSearch;
         p.style.display = ok ? "" : "none";
         if (ok) shown++;
       });
@@ -281,10 +294,23 @@
       c.addEventListener("click", function () {
         chips.forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
         c.setAttribute("aria-pressed", "true");
-        apply(c.getAttribute("data-filter"));
+        curFilter = c.getAttribute("data-filter");
+        apply();
       });
     });
-    apply("all");
+    if (searchEl) searchEl.addEventListener("input", function () {
+      curQuery = searchEl.value.trim().toLowerCase();
+      apply();
+    });
+    apply();
+
+    // pre-fill the "suggest an add-on" GitHub issue
+    var suggest = document.getElementById("suggestBtn");
+    if (suggest) {
+      var body = "**Add-on name:**\n\n**What it does (one line):**\n\n**Type:** MCP (universal) or Plugin\n\n**Link:**\n\n**Best section (Debug / Test / Ship / Data / …):**\n";
+      suggest.href = "https://github.com/plumbgoat/ai-plugin-directory/issues/new?title=" +
+        encodeURIComponent("Suggest an add-on: ") + "&body=" + encodeURIComponent(body);
+    }
 
     // live GitHub star count (works once hosted on GitHub Pages; blocked in the artifact preview)
     fetch("https://api.github.com/repos/plumbgoat/ai-plugin-directory")
