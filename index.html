@@ -36,6 +36,16 @@
   .chip[aria-pressed="true"] { background:var(--accent); border-color:var(--accent); color:#fff; }
   .chip:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
   .count { color:var(--muted); font-family:var(--mono); font-size:0.8rem; margin-left:auto; }
+  .cta-row { display:flex; flex-wrap:wrap; gap:0.6rem; margin:0 0 1.5rem; }
+  .btn { font-family:var(--sans); font-size:0.9rem; font-weight:600; text-decoration:none; border-radius:100px; padding:0.55rem 1.1rem; display:inline-flex; align-items:center; gap:0.5rem; cursor:pointer; border:1px solid var(--line); transition:all 0.18s ease; }
+  .btn-star { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .btn-star:hover { filter:brightness(1.06); transform:translateY(-1px); }
+  .btn-share { background:var(--card); color:var(--ink); }
+  .btn-share:hover { border-color:var(--accent); color:var(--accent-ink); }
+  .star-count { font-family:var(--mono); font-weight:700; background:rgba(255,255,255,0.22); padding:0.05rem 0.5rem; border-radius:100px; font-size:0.82rem; }
+  .star-note { font-size:0.9rem; color:var(--muted); margin:1.6rem 0 0; }
+  .star-note a { color:var(--accent-ink); text-decoration:none; font-weight:600; }
+  .star-note a:hover { text-decoration:underline; }
   .legend { display:flex; flex-wrap:wrap; gap:0.7rem 1.2rem; margin-top:1.1rem; font-family:var(--mono); font-size:0.76rem; color:var(--muted); }
   .legend span { display:inline-flex; align-items:center; gap:0.4rem; }
   .tagdot { width:10px; height:10px; border-radius:3px; display:inline-block; }
@@ -92,6 +102,10 @@
       <p class="brand"><span class="dot"></span> Plugboard · the cross-tool index</p>
       <h1>AI coding add-ons, <span class="g">by the job</span> you're doing.</h1>
       <p class="lede">A curated shelf of plugins &amp; MCP servers for AI dev tools — sorted by what you're trying to get done, not by which company made them. Filter by the tool you actually use.</p>
+      <div class="cta-row">
+        <a class="btn btn-star" href="https://github.com/plumbgoat/ai-plugin-directory" target="_blank" rel="noopener">★ Star on GitHub <span class="star-count" id="stars">—</span></a>
+        <button class="btn btn-share" id="shareBtn" type="button">Share ↗</button>
+      </div>
       <div class="controls">
         <span class="filter-label">Works in</span>
         <div class="chips" role="group" aria-label="Filter by tool">
@@ -119,6 +133,7 @@
     <footer>
       <p><b>How this list works.</b> A curated selection, not an exhaustive dump — the point is to help you pick, not to list 9,000 things. <span class="mono">Universal (MCP)</span> add-ons run in any MCP-capable tool (Claude Code, Cursor, Windsurf, and more); <span class="mono">Claude</span> add-ons install in Claude Code. Descriptions come from each tool's official listing; install counts are approximate and point-in-time.</p>
       <p style="margin-top:0.8rem;"><b>About the install lines.</b> They show the <em>entry</em> command. MCP servers usually need a URL or an <span class="mono">npx</span> target you'll find on the add-on's linked page; official-directory plugins install from Claude Code's <span class="mono">/plugin</span> browser. Add-ons marked <b>plumbgoat</b> are ours.</p>
+      <p class="star-note">Saved you a browse? <a href="https://github.com/plumbgoat/ai-plugin-directory" target="_blank" rel="noopener">★ Star it on GitHub</a> — it's how lists like this get found.</p>
       <p class="mono" style="margin-top:0.8rem;">plugboard · curated for people who'd rather build than browse 9,000 listings</p>
     </footer>
 
@@ -270,6 +285,26 @@
       });
     });
     apply("all");
+
+    // live GitHub star count (works once hosted on GitHub Pages; blocked in the artifact preview)
+    fetch("https://api.github.com/repos/plumbgoat/ai-plugin-directory")
+      .then(function (r) { return r.json(); })
+      .then(function (d) { if (d && typeof d.stargazers_count === "number") document.getElementById("stars").textContent = d.stargazers_count; })
+      .catch(function () {});
+
+    // share button
+    var sb = document.getElementById("shareBtn");
+    var shareUrl = "https://plumbgoat.github.io/ai-plugin-directory/";
+    if (sb) sb.addEventListener("click", function () {
+      if (navigator.share) {
+        navigator.share({ title: "Plugboard", text: "AI coding add-ons, organized by the job you're doing", url: shareUrl }).catch(function () {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareUrl).then(function () {
+          sb.textContent = "Link copied ✓";
+          setTimeout(function () { sb.textContent = "Share ↗"; }, 1800);
+        }).catch(function () {});
+      }
+    });
 
     // reveal
     var els = document.querySelectorAll(".reveal");
