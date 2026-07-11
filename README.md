@@ -9,7 +9,6 @@ need to *debug faster*, *write tests*, *ship without breaking prod*.
 Plugboard sorts by that: your job first, then a short hand-picked shortlist,
 tagged with which AI tool it works in.
 
-🔌 **[View the directory →](https://claude.ai/code/artifact/0e23109e-f0b2-44d9-91df-c512802c7f6b)**
 
 ## What's inside
 
