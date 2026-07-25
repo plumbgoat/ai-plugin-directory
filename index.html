@@ -38,7 +38,7 @@
 
   .hero { padding:clamp(0.5rem,3vw,2rem) 0 1.4rem; border-bottom:1px solid var(--line); }
   .brand { font-family:var(--mono); font-size:0.74rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--accent-ink); display:flex; align-items:center; gap:0.55rem; margin:0 0 1rem; }
-  .brand .dot { width:7px; height:7px; border-radius:50%; background:var(--accent); }
+  .brand .dot { width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--accent-soft); }
   h1 { font-size:clamp(2.1rem,5.2vw,3.5rem); line-height:1.03; letter-spacing:-0.035em; font-weight:800; margin:0 0 0.9rem; text-wrap:balance; max-width:16ch; }
   h1 .g { color:var(--accent-ink); }
   .lede { font-size:clamp(1rem,2vw,1.18rem); color:var(--muted); max-width:52ch; margin:0 0 1.6rem; text-wrap:pretty; }
@@ -51,14 +51,14 @@
   .chip:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
   .count { color:var(--muted); font-family:var(--mono); font-size:0.8rem; margin-left:auto; }
   .cta-row { display:flex; flex-wrap:wrap; gap:0.6rem; margin:0 0 1.5rem; }
-  .btn { font-family:var(--sans); font-size:0.9rem; font-weight:600; text-decoration:none; border-radius:9px; padding:0.55rem 1.1rem; display:inline-flex; align-items:center; gap:0.5rem; cursor:pointer; border:1px solid var(--line); transition:all 0.18s ease; }
+  .btn { font-family:var(--sans); font-size:0.9rem; font-weight:600; text-decoration:none; border-radius:100px; padding:0.55rem 1.1rem; display:inline-flex; align-items:center; gap:0.5rem; cursor:pointer; border:1px solid var(--line); transition:all 0.18s ease; }
   .btn-star { background:var(--accent); color:#fff; border-color:var(--accent); }
   .btn-star:hover { filter:brightness(1.06); transform:translateY(-1px); }
   .btn-share { background:var(--card); color:var(--ink); }
   .btn-share:hover { border-color:var(--accent); color:var(--accent-ink); }
   .star-count { font-family:var(--mono); font-weight:700; background:rgba(255,255,255,0.22); padding:0.05rem 0.5rem; border-radius:100px; font-size:0.82rem; }
   .searchbar { margin:0 0 1rem; }
-  .search { font-family:var(--sans); font-size:0.95rem; width:100%; max-width:420px; padding:0.6rem 1rem; border:1px solid var(--line); border-radius:9px; background:var(--card); color:var(--ink); }
+  .search { font-family:var(--sans); font-size:0.95rem; width:100%; max-width:420px; padding:0.6rem 1rem; border:1px solid var(--line); border-radius:100px; background:var(--card); color:var(--ink); }
   .search::placeholder { color:var(--muted); }
   .search:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
   .star-note { font-size:0.9rem; color:var(--muted); margin:1.6rem 0 0; }
@@ -68,10 +68,6 @@
   .legend span { display:inline-flex; align-items:center; gap:0.4rem; }
   .tagdot { width:10px; height:10px; border-radius:3px; display:inline-block; }
   .td-claude { background:var(--claude); } .td-uni { background:var(--uni); }
-
-  .jumpnav { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:1.1rem; padding-top:1.1rem; border-top:1px solid var(--line); }
-  .jumpnav a { font-family:var(--mono); font-size:0.72rem; color:var(--muted); text-decoration:none; border:1px solid var(--line); border-radius:100px; padding:0.28rem 0.7rem; transition:all 0.15s ease; scroll-margin-top:1.2rem; }
-  .jumpnav a:hover, .jumpnav a:focus-visible { border-color:var(--accent); color:var(--accent-ink); outline:none; }
 
   .job { margin-top:2.6rem; }
   .job-head { display:flex; align-items:baseline; gap:0.8rem; margin-bottom:1rem; flex-wrap:wrap; }
@@ -97,17 +93,8 @@
   .tag.uni { background:var(--uni-soft); color:var(--uni); }
   .setup { font-family:var(--mono); font-size:0.68rem; color:var(--muted); margin-left:auto; }
   .setup b { color:var(--accent-ink); font-weight:600; }
-  .install { font-family:var(--mono); font-size:0.71rem; color:var(--muted); background:var(--paper-2); border-radius:7px; padding:0.34rem 0.5rem; display:flex; align-items:center; gap:0.4rem; }
+  .install { font-family:var(--mono); font-size:0.71rem; color:var(--muted); background:var(--paper-2); border-radius:7px; padding:0.34rem 0.5rem; overflow-x:auto; white-space:nowrap; }
   .install .p { color:var(--accent-ink); }
-  .install-cmd { overflow-x:auto; white-space:nowrap; flex:1; }
-  .install-cmd::-webkit-scrollbar { display:none; }
-  .copy-btn { flex:none; font-family:var(--mono); font-size:0.7rem; line-height:1; border:1px solid var(--line); background:var(--card); color:var(--muted); border-radius:5px; padding:0.25rem 0.4rem; cursor:pointer; transition:all 0.15s ease; }
-  .copy-btn:hover { border-color:var(--accent); color:var(--accent-ink); }
-  .copy-btn:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
-  .tag.price { border:1px solid var(--line); }
-  .tag.price-free { background:var(--accent-soft); color:var(--accent-ink); border-color:transparent; }
-  .tag.price-freemium { background:var(--paper-2); color:var(--muted); }
-  .tag.price-paid { background:transparent; color:var(--muted); }
 
   .stacks-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:0.9rem; }
   .stack { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:1.1rem 1.2rem 1.2rem; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:0.55rem; }
@@ -147,11 +134,12 @@
         <input type="search" class="search" id="search" placeholder="Search add-ons — e.g. postgres, testing, deploy…" aria-label="Search add-ons">
       </div>
       <div class="controls">
-        <span class="filter-label">Type</span>
-        <div class="chips" role="group" aria-label="Filter by add-on type">
+        <span class="filter-label">Works in</span>
+        <div class="chips" role="group" aria-label="Filter by tool">
           <button class="chip" data-filter="all" aria-pressed="true">All</button>
-          <button class="chip" data-filter="claude" aria-pressed="false">Claude plugins</button>
-          <button class="chip" data-filter="universal" aria-pressed="false">Universal (MCP)</button>
+          <button class="chip" data-filter="claude" aria-pressed="false">Claude Code</button>
+          <button class="chip" data-filter="cursor" aria-pressed="false">Cursor</button>
+          <button class="chip" data-filter="windsurf" aria-pressed="false">Windsurf</button>
         </div>
         <span class="count" id="count"></span>
       </div>
@@ -159,11 +147,10 @@
         <span><i class="tagdot td-claude"></i> Claude plugin — installs in Claude Code</span>
         <span><i class="tagdot td-uni"></i> Universal (MCP) — works in any MCP-capable tool: Claude, Cursor, Windsurf…</span>
       </div>
-      <nav class="jumpnav" id="jumpnav" aria-label="Jump to section"></nav>
     </header>
 
     <main id="board"></main>
-    <p class="empty" id="empty">No add-ons match that filter yet — try “All”.</p>
+    <p class="empty" id="empty">No add-ons match that tool yet — try “All”.</p>
 
     <section class="job" id="stacks-sec">
       <div class="job-head reveal"><span class="jn">✦</span><h2>Starter stacks</h2><p>Grab-and-go bundles for a kind of work.</p></div>
@@ -173,10 +160,8 @@
     <footer>
       <p><b>How this list works.</b> A curated selection, not an exhaustive dump — the point is to help you pick, not to list 9,000 things. <span class="mono">Universal (MCP)</span> add-ons run in any MCP-capable tool (Claude Code, Cursor, Windsurf, and more); <span class="mono">Claude</span> add-ons install in Claude Code. Descriptions come from each tool's official listing; install counts are approximate and point-in-time.</p>
       <p style="margin-top:0.8rem;"><b>About the install lines.</b> They show the <em>entry</em> command. MCP servers usually need a URL or an <span class="mono">npx</span> target you'll find on the add-on's linked page; official-directory plugins install from Claude Code's <span class="mono">/plugin</span> browser. Add-ons marked <b>plumbgoat</b> are ours.</p>
-      <p style="margin-top:0.8rem;"><b>About the pricing tags.</b> <span class="mono">Free</span>, <span class="mono">Freemium</span>, and <span class="mono">Paid</span> are a best-effort read of each product's current plans, not a guarantee — plans change, so check the linked page before you commit.</p>
       <p class="star-note">Saved you a browse? <a href="https://github.com/plumbgoat/ai-plugin-directory" target="_blank" rel="noopener">★ Star it on GitHub</a> — it's how lists like this get found.</p>
-      <p class="mono" style="margin-top:0.8rem;">Last updated: <time datetime="2026-07-25">25 Jul 2026</time></p>
-      <p class="mono" style="margin-top:0.4rem;">plugboard · curated for people who'd rather build than browse 9,000 listings</p>
+      <p class="mono" style="margin-top:0.8rem;">plugboard · curated for people who'd rather build than browse 9,000 listings</p>
     </footer>
 
   </div>
@@ -185,94 +170,84 @@
 <script>
   var JOBS = [
     { mark:"★", title:"Power-ups & frameworks", blurb:"Broad, popular add-ons that reshape how you work.", items:[
-      { n:"Superpowers", t:"claude", pr:"free", u:"https://github.com/obra/superpowers", i:"/plugin marketplace add obra/superpowers", pop:"~752k", d:"The ecosystem's most-loved plugin — reframes Claude Code as a small dev team: brainstorming, spec-driven development, systematic debugging, red/green TDD, and review." },
-      { n:"Frontend Design", t:"claude", pr:"free", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install frontend-design", pop:"~829k", d:"Anthropic's own plugin for building production-grade UI — turns rough ideas into polished, real interfaces, not throwaway mockups." },
-      { n:"feature-dev", t:"claude", pr:"free", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install feature-dev", pop:"~89k", d:"A structured feature-development workflow — plan, build, verify — and one of the most-installed plugins in the official directory." },
-      { n:"Claude Mem", t:"claude", pr:"free", u:"https://github.com/anthropics/claude-plugins-community", d:"Long-term memory for Claude Code — captures and compresses your work across sessions, then reinjects the relevant context automatically next time." }
+      { n:"Superpowers", t:"claude", u:"https://github.com/obra/superpowers", i:"/plugin marketplace add obra/superpowers", pop:"~752k", d:"The ecosystem's most-loved plugin — reframes Claude Code as a small dev team: brainstorming, spec-driven development, systematic debugging, red/green TDD, and review." },
+      { n:"Frontend Design", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install frontend-design", pop:"~829k", d:"Anthropic's own plugin for building production-grade UI — turns rough ideas into polished, real interfaces, not throwaway mockups." },
+      { n:"feature-dev", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install feature-dev", pop:"~89k", d:"A structured feature-development workflow — plan, build, verify — and one of the most-installed plugins in the official directory." },
+      { n:"Claude Mem", t:"claude", u:"https://github.com/anthropics/claude-plugins-community", d:"Long-term memory for Claude Code — captures and compresses your work across sessions, then reinjects the relevant context automatically next time." }
     ]},
     { mark:"01", title:"Debug & fix", blurb:"Find why it broke, faster.", items:[
-      { n:"rootcause", t:"claude", pr:"free", u:"https://github.com/plumbgoat/rootcause", i:"/plugin marketplace add plumbgoat/rootcause", made:1, d:"Paste a stack trace, get the real root cause traced through your actual code — not a generic explanation of the exception." },
-      { n:"Sentry", t:"universal", pr:"freemium", u:"https://sentry.io", i:"claude mcp add sentry", d:"Pull real production errors and issues into your editor so the agent debugs against what actually happened." },
-      { n:"greptile", t:"claude", pr:"paid", u:"https://www.greptile.com", i:"/plugin install greptile", d:"AI search and understanding across a large codebase — ask where something lives and why." },
-      { n:"Chrome DevTools", t:"universal", pr:"free", u:"https://github.com/ChromeDevTools/chrome-devtools-mcp", i:"claude mcp add chrome-devtools", d:"Inspect and control a live Chrome to debug web apps — console, network, and DOM from the agent." }
+      { n:"rootcause", t:"claude", u:"https://github.com/plumbgoat/rootcause", i:"/plugin marketplace add plumbgoat/rootcause", made:1, d:"Paste a stack trace, get the real root cause traced through your actual code — not a generic explanation of the exception." },
+      { n:"Sentry", t:"universal", u:"https://sentry.io", i:"claude mcp add sentry", d:"Pull real production errors and issues into your editor so the agent debugs against what actually happened." },
+      { n:"greptile", t:"claude", u:"https://www.greptile.com", i:"/plugin install greptile", d:"AI search and understanding across a large codebase — ask where something lives and why." },
+      { n:"Chrome DevTools", t:"universal", u:"https://github.com/ChromeDevTools/chrome-devtools-mcp", i:"claude mcp add chrome-devtools", d:"Inspect and control a live Chrome to debug web apps — console, network, and DOM from the agent." }
     ]},
     { mark:"02", title:"Test", blurb:"Cover the code you just wrote.", items:[
-      { n:"testradar", t:"claude", pr:"free", u:"https://github.com/plumbgoat/testradar", i:"/plugin marketplace add plumbgoat/testradar", made:1, d:"Finds the code you changed that has no test, then writes the missing tests in your project's own framework and style." },
-      { n:"Playwright", t:"universal", pr:"free", u:"https://github.com/microsoft/playwright-mcp", i:"claude mcp add playwright", d:"Drive a real browser for end-to-end tests — click, type, and assert across pages under agent control." },
-      { n:"Stagehand", t:"universal", pr:"freemium", u:"https://docs.stagehand.dev/v3/integrations/mcp/setup", i:"claude mcp add --transport http browserbase https://mcp.browserbase.com/mcp?browserbaseApiKey=<key>", d:"AI-native browser automation — navigate, act, and extract data using natural language instead of brittle selectors." }
+      { n:"testradar", t:"claude", u:"https://github.com/plumbgoat/testradar", i:"/plugin marketplace add plumbgoat/testradar", made:1, d:"Finds the code you changed that has no test, then writes the missing tests in your project's own framework and style." },
+      { n:"Playwright", t:"universal", u:"https://github.com/microsoft/playwright-mcp", i:"claude mcp add playwright", d:"Drive a real browser for end-to-end tests — click, type, and assert across pages under agent control." }
     ]},
     { mark:"03", title:"Ship & review", blurb:"Get it merged without breaking things.", items:[
-      { n:"code-review", t:"claude", pr:"free", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install code-review", d:"Automated pull-request review — flags correctness, security, and style issues before a human looks." },
-      { n:"CodeRabbit", t:"claude", pr:"freemium", u:"https://www.coderabbit.ai", i:"/plugin install coderabbit", d:"An AI review partner that comments on your PRs with context-aware suggestions." },
-      { n:"GitHub", t:"universal", pr:"free", u:"https://github.com/github/github-mcp-server", i:"claude mcp add github", d:"Manage repos, pull requests, and issues directly — open PRs, read reviews, and link work." },
-      { n:"GitLab", t:"universal", pr:"free", u:"https://gitlab.com", i:"claude mcp add gitlab", d:"The GitLab side of the same workflow — merge requests, pipelines, and issues from the editor." },
-      { n:"commit-commands", t:"claude", pr:"free", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install commit-commands", d:"Git commit workflow helpers — stage, message, and structure commits without leaving the chat." },
-      { n:"Graphite", t:"universal", pr:"freemium", u:"https://graphite.com/docs/gt-mcp", i:"claude mcp add graphite", d:"Breaks a large AI-generated diff into small, stacked pull requests that are actually easy to review — via Graphite's GT MCP." }
+      { n:"code-review", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install code-review", d:"Automated pull-request review — flags correctness, security, and style issues before a human looks." },
+      { n:"CodeRabbit", t:"claude", u:"https://www.coderabbit.ai", i:"/plugin install coderabbit", d:"An AI review partner that comments on your PRs with context-aware suggestions." },
+      { n:"GitHub", t:"universal", u:"https://github.com/github/github-mcp-server", i:"claude mcp add github", d:"Manage repos, pull requests, and issues directly — open PRs, read reviews, and link work." },
+      { n:"GitLab", t:"universal", u:"https://gitlab.com", i:"claude mcp add gitlab", d:"The GitLab side of the same workflow — merge requests, pipelines, and issues from the editor." },
+      { n:"commit-commands", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install commit-commands", d:"Git commit workflow helpers — stage, message, and structure commits without leaving the chat." }
     ]},
     { mark:"04", title:"Incidents & ops", blurb:"When it's on fire, and after.", items:[
-      { n:"postmortem", t:"claude", pr:"free", u:"https://github.com/plumbgoat/postmortem", i:"/plugin marketplace add plumbgoat/postmortem", made:1, d:"Turns raw incident logs, traces, and chat into a complete blameless postmortem — timeline, root cause, action items." },
-      { n:"Datadog", t:"universal", pr:"paid", u:"https://www.datadoghq.com", i:"claude mcp add datadog", d:"Query logs, metrics, and traces so the agent reasons over what your monitoring actually saw." },
-      { n:"Grafana", t:"universal", pr:"freemium", u:"https://grafana.com", i:"claude mcp add grafana", d:"Read dashboards and manage alerting — pull the panel that matters into the conversation." },
-      { n:"PagerDuty", t:"universal", pr:"paid", u:"https://www.pagerduty.com", i:"claude mcp add pagerduty", d:"Incident context and correlation — who's on call, what's firing, and what's related." },
-      { n:"PostHog", t:"universal", pr:"freemium", u:"https://posthog.com", i:"claude mcp add posthog", d:"Product analytics and feature flags — ask why a metric moved and get the data behind it." },
-      { n:"Honeycomb", t:"universal", pr:"freemium", u:"https://www.honeycomb.io", i:"claude mcp add honeycomb", d:"Observability and SLOs — trace a slow request through your services to the span that hurt." }
+      { n:"postmortem", t:"claude", u:"https://github.com/plumbgoat/postmortem", i:"/plugin marketplace add plumbgoat/postmortem", made:1, d:"Turns raw incident logs, traces, and chat into a complete blameless postmortem — timeline, root cause, action items." },
+      { n:"Datadog", t:"universal", u:"https://www.datadoghq.com", i:"claude mcp add datadog", d:"Query logs, metrics, and traces so the agent reasons over what your monitoring actually saw." },
+      { n:"Grafana", t:"universal", u:"https://grafana.com", i:"claude mcp add grafana", d:"Read dashboards and manage alerting — pull the panel that matters into the conversation." },
+      { n:"PagerDuty", t:"universal", u:"https://www.pagerduty.com", i:"claude mcp add pagerduty", d:"Incident context and correlation — who's on call, what's firing, and what's related." },
+      { n:"PostHog", t:"universal", u:"https://posthog.com", i:"claude mcp add posthog", d:"Product analytics and feature flags — ask why a metric moved and get the data behind it." },
+      { n:"Honeycomb", t:"universal", u:"https://www.honeycomb.io", i:"claude mcp add honeycomb", d:"Observability and SLOs — trace a slow request through your services to the span that hurt." }
     ]},
     { mark:"05", title:"Plan & track", blurb:"Know where the work stands.", items:[
-      { n:"sprint-report", t:"claude", pr:"free", u:"https://github.com/plumbgoat/sprint-report", i:"/plugin marketplace add plumbgoat/sprint-report", made:1, d:"Your Jira sprint's real status rendered in-session — done, in-flight, stuck, and scope creep. Works on any Jira." },
-      { n:"Linear", t:"universal", pr:"freemium", u:"https://linear.app", i:"claude mcp add linear", d:"Read and update issues, cycles, and projects from where you're coding." },
-      { n:"Atlassian", t:"universal", pr:"freemium", u:"https://www.atlassian.com/software/jira", i:"claude mcp add atlassian", d:"Jira & Confluence — issues, boards, and docs, connected to your workflow." },
-      { n:"Notion", t:"universal", pr:"freemium", u:"https://www.notion.so", i:"claude mcp add notion", d:"Read and write workspace docs and databases without switching tabs." },
-      { n:"Slack", t:"universal", pr:"freemium", u:"https://slack.com", i:"claude mcp add slack", d:"Read and post to channels — pull a thread's context in, or send an update out." },
-      { n:"Asana", t:"universal", pr:"freemium", u:"https://asana.com", i:"claude mcp add asana", d:"Manage tasks and projects conversationally, tied to the work you're shipping." }
+      { n:"sprint-report", t:"claude", u:"https://github.com/plumbgoat/sprint-report", i:"/plugin marketplace add plumbgoat/sprint-report", made:1, d:"Your Jira sprint's real status rendered in-session — done, in-flight, stuck, and scope creep. Works on any Jira." },
+      { n:"Linear", t:"universal", u:"https://linear.app", i:"claude mcp add linear", d:"Read and update issues, cycles, and projects from where you're coding." },
+      { n:"Atlassian", t:"universal", u:"https://www.atlassian.com/software/jira", i:"claude mcp add atlassian", d:"Jira & Confluence — issues, boards, and docs, connected to your workflow." },
+      { n:"Notion", t:"universal", u:"https://www.notion.so", i:"claude mcp add notion", d:"Read and write workspace docs and databases without switching tabs." },
+      { n:"Slack", t:"universal", u:"https://slack.com", i:"claude mcp add slack", d:"Read and post to channels — pull a thread's context in, or send an update out." },
+      { n:"Asana", t:"universal", u:"https://asana.com", i:"claude mcp add asana", d:"Manage tasks and projects conversationally, tied to the work you're shipping." }
     ]},
     { mark:"06", title:"Prompts & context", blurb:"Feed the model the right things.", items:[
-      { n:"prompt-forge", t:"claude", pr:"free", u:"https://github.com/plumbgoat/prompt-forge", i:"/plugin marketplace add plumbgoat/prompt-forge", made:1, d:"Build, improve, and battle-test prompts against real inputs — then save the winners as reusable slash commands." },
-      { n:"Context7", t:"universal", pr:"freemium", u:"https://github.com/upstash/context7", i:"claude mcp add context7", d:"Pulls up-to-date library documentation into context so the agent codes against current APIs, not stale training." },
-      { n:"claude-md-management", t:"claude", pr:"free", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install claude-md-management", d:"Keep your CLAUDE.md tidy and current — the file that steers every session." }
+      { n:"prompt-forge", t:"claude", u:"https://github.com/plumbgoat/prompt-forge", i:"/plugin marketplace add plumbgoat/prompt-forge", made:1, d:"Build, improve, and battle-test prompts against real inputs — then save the winners as reusable slash commands." },
+      { n:"Context7", t:"universal", u:"https://github.com/upstash/context7", i:"claude mcp add context7", d:"Pulls up-to-date library documentation into context so the agent codes against current APIs, not stale training." },
+      { n:"claude-md-management", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install claude-md-management", d:"Keep your CLAUDE.md tidy and current — the file that steers every session." }
     ]},
     { mark:"07", title:"Data & backend", blurb:"Talk to your database directly.", items:[
-      { n:"Supabase", t:"universal", pr:"freemium", u:"https://supabase.com/docs/guides/ai-tools/mcp", i:"claude mcp add --transport http supabase https://mcp.supabase.com/mcp", d:"The official remote MCP server for Supabase — query Postgres, manage auth and storage, and deploy edge functions, no self-hosting required." },
-      { n:"PostgreSQL", t:"universal", pr:"free", u:"https://github.com/modelcontextprotocol/servers", i:"claude mcp add postgres", d:"Query and inspect your Postgres — schema, rows, and plans — from the editor." },
-      { n:"Redis", t:"universal", pr:"freemium", u:"https://redis.io/docs/latest/integrate/redis-mcp/client-conf/", i:"claude mcp add redis", d:"Inspect keys, run commands, and reason about your cache or queue data straight from the editor." },
-      { n:"MongoDB", t:"universal", pr:"freemium", u:"https://www.mongodb.com", i:"claude mcp add mongodb", d:"Run database operations and get optimization guidance against your collections." },
-      { n:"BigQuery", t:"universal", pr:"paid", u:"https://cloud.google.com/bigquery", i:"claude mcp add bigquery", d:"Query large datasets in natural language and get results without hand-writing SQL." },
-      { n:"Firebase", t:"universal", pr:"freemium", u:"https://firebase.google.com", i:"claude mcp add firebase", d:"Manage your Firebase backend — data, auth, and functions — conversationally." },
-      { n:"Neon", t:"universal", pr:"freemium", u:"https://neon.tech", i:"claude mcp add neon", d:"Serverless Postgres — spin up branches, run queries, and manage projects from the editor." },
-      { n:"Pinecone", t:"universal", pr:"freemium", u:"https://www.pinecone.io", i:"claude mcp add pinecone", d:"Vector database operations — build and query embeddings for RAG and semantic search." },
-      { n:"Convex", t:"universal", pr:"freemium", u:"https://www.convex.dev", i:"claude mcp add convex", d:"A full-stack reactive backend — data, functions, and real-time sync in one place." },
-      { n:"ClickHouse", t:"universal", pr:"freemium", u:"https://clickhouse.com", i:"claude mcp add clickhouse", d:"Query a ClickHouse column store — fast analytics over huge event tables." }
+      { n:"PostgreSQL", t:"universal", u:"https://github.com/modelcontextprotocol/servers", i:"claude mcp add postgres", d:"Query and inspect your Postgres — schema, rows, and plans — from the editor." },
+      { n:"MongoDB", t:"universal", u:"https://www.mongodb.com", i:"claude mcp add mongodb", d:"Run database operations and get optimization guidance against your collections." },
+      { n:"BigQuery", t:"universal", u:"https://cloud.google.com/bigquery", i:"claude mcp add bigquery", d:"Query large datasets in natural language and get results without hand-writing SQL." },
+      { n:"Firebase", t:"universal", u:"https://firebase.google.com", i:"claude mcp add firebase", d:"Manage your Firebase backend — data, auth, and functions — conversationally." },
+      { n:"Neon", t:"universal", u:"https://neon.tech", i:"claude mcp add neon", d:"Serverless Postgres — spin up branches, run queries, and manage projects from the editor." },
+      { n:"Pinecone", t:"universal", u:"https://www.pinecone.io", i:"claude mcp add pinecone", d:"Vector database operations — build and query embeddings for RAG and semantic search." },
+      { n:"Convex", t:"universal", u:"https://www.convex.dev", i:"claude mcp add convex", d:"A full-stack reactive backend — data, functions, and real-time sync in one place." },
+      { n:"ClickHouse", t:"universal", u:"https://clickhouse.com", i:"claude mcp add clickhouse", d:"Query a ClickHouse column store — fast analytics over huge event tables." }
     ]},
     { mark:"08", title:"Security & auth", blurb:"Catch holes before they ship.", items:[
-      { n:"Snyk", t:"universal", pr:"freemium", u:"https://snyk.io/snyk-for-claude-code/", i:"npx -y snyk@latest mcp configure --tool=claude-cli", d:"Scans dependencies, code, IaC, and containers for vulnerabilities as the agent writes — Secure-at-inception guardrails baked into Claude Code." },
-      { n:"1Password", t:"universal", pr:"paid", u:"https://developer.1password.com", i:"claude mcp add 1password", d:"Resolves secrets from your vault at runtime — API keys and credentials never land in code, config files, or chat history." },
-      { n:"Aikido", t:"claude", pr:"freemium", u:"https://www.aikido.dev", i:"/plugin install aikido", d:"SAST, secret, and infrastructure scanning — flags vulnerabilities as the agent writes code." },
-      { n:"42Crunch", t:"claude", pr:"freemium", u:"https://42crunch.com", i:"/plugin install 42crunch-api-security-testing", d:"Automated API security testing and audit — hardens your endpoints against the OWASP API risks." },
-      { n:"Auth0", t:"universal", pr:"freemium", u:"https://auth0.com", i:"claude mcp add auth0", d:"Add enterprise-grade authentication without hand-rolling it — login, sessions, and roles." },
-      { n:"security-guidance", t:"claude", pr:"free", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install security-guidance", d:"Anthropic's own security best-practice guidance, applied to the code you're writing." }
+      { n:"Aikido", t:"claude", u:"https://www.aikido.dev", i:"/plugin install aikido", d:"SAST, secret, and infrastructure scanning — flags vulnerabilities as the agent writes code." },
+      { n:"42Crunch", t:"claude", u:"https://42crunch.com", i:"/plugin install 42crunch-api-security-testing", d:"Automated API security testing and audit — hardens your endpoints against the OWASP API risks." },
+      { n:"Auth0", t:"universal", u:"https://auth0.com", i:"claude mcp add auth0", d:"Add enterprise-grade authentication without hand-rolling it — login, sessions, and roles." },
+      { n:"security-guidance", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install security-guidance", d:"Anthropic's own security best-practice guidance, applied to the code you're writing." }
     ]},
     { mark:"09", title:"Design & assets", blurb:"Bring design into the build.", items:[
-      { n:"Figma", t:"universal", pr:"freemium", u:"https://www.figma.com", i:"claude mcp add figma", d:"Pull real design context — components, tokens, and specs — into the code you're generating." },
-      { n:"Canva", t:"universal", pr:"freemium", u:"https://www.canva.com", i:"claude mcp add canva", d:"Create, edit, review, and resize Canva designs without leaving your workflow." },
-      { n:"Cloudinary", t:"universal", pr:"freemium", u:"https://cloudinary.com", i:"claude mcp add cloudinary", d:"Manage and transform image and video assets — upload, optimize, and deliver from code." }
+      { n:"Figma", t:"universal", u:"https://www.figma.com", i:"claude mcp add figma", d:"Pull real design context — components, tokens, and specs — into the code you're generating." },
+      { n:"Canva", t:"universal", u:"https://www.canva.com", i:"claude mcp add canva", d:"Create, edit, review, and resize Canva designs without leaving your workflow." },
+      { n:"Cloudinary", t:"universal", u:"https://cloudinary.com", i:"claude mcp add cloudinary", d:"Manage and transform image and video assets — upload, optimize, and deliver from code." }
     ]},
     { mark:"10", title:"Deploy & infra", blurb:"Get it live and keep it up.", items:[
-      { n:"AWS", t:"claude", pr:"freemium", u:"https://github.com/aws/agent-toolkit-for-aws", i:"/plugin marketplace add aws/agent-toolkit-for-aws", d:"AWS's own agent toolkit — access to docs, skills, and the full AWS API surface for building and operating on AWS." },
-      { n:"Terraform", t:"universal", pr:"free", u:"https://github.com/hashicorp/terraform-mcp-server", i:"claude mcp add terraform", d:"HashiCorp's official MCP server — look up providers and modules and reason about your Terraform state and plans." },
-      { n:"Cloudflare", t:"universal", pr:"freemium", u:"https://www.cloudflare.com", i:"claude mcp add cloudflare", d:"Build and deploy Workers, Durable Objects, and edge apps — and tune web performance." },
-      { n:"Vercel", t:"universal", pr:"freemium", u:"https://vercel.com", i:"claude mcp add vercel", d:"Deploy frontend apps, inspect preview builds, and manage projects from the editor." },
-      { n:"Netlify", t:"universal", pr:"freemium", u:"https://www.netlify.com", i:"claude mcp add netlify", d:"Ship sites and serverless functions, and manage deploys conversationally." }
+      { n:"Cloudflare", t:"universal", u:"https://www.cloudflare.com", i:"claude mcp add cloudflare", d:"Build and deploy Workers, Durable Objects, and edge apps — and tune web performance." },
+      { n:"Vercel", t:"universal", u:"https://vercel.com", i:"claude mcp add vercel", d:"Deploy frontend apps, inspect preview builds, and manage projects from the editor." },
+      { n:"Netlify", t:"universal", u:"https://www.netlify.com", i:"claude mcp add netlify", d:"Ship sites and serverless functions, and manage deploys conversationally." }
     ]},
     { mark:"11", title:"Search & research", blurb:"Give the model the live web.", items:[
-      { n:"Tavily", t:"universal", pr:"freemium", u:"https://docs.tavily.com/documentation/mcp", i:"claude mcp add --transport http tavily https://mcp.tavily.com/mcp/?tavilyApiKey=<key>", d:"Search API built specifically for AI agents — the default web-search backend behind a huge share of agent frameworks." },
-      { n:"Exa", t:"universal", pr:"freemium", u:"https://exa.ai", i:"claude mcp add exa", d:"AI-native web search built for agents — high-quality results and content, not link spam." },
-      { n:"Firecrawl", t:"universal", pr:"freemium", u:"https://www.firecrawl.dev", i:"claude mcp add firecrawl", d:"Scrape and crawl any site into clean, structured markdown the model can actually use." },
-      { n:"Perplexity", t:"universal", pr:"freemium", u:"https://www.perplexity.ai", i:"claude mcp add perplexity", d:"Ask a research question and get a sourced, up-to-date answer pulled into your session." }
+      { n:"Exa", t:"universal", u:"https://exa.ai", i:"claude mcp add exa", d:"AI-native web search built for agents — high-quality results and content, not link spam." },
+      { n:"Firecrawl", t:"universal", u:"https://www.firecrawl.dev", i:"claude mcp add firecrawl", d:"Scrape and crawl any site into clean, structured markdown the model can actually use." },
+      { n:"Perplexity", t:"universal", u:"https://www.perplexity.ai", i:"claude mcp add perplexity", d:"Ask a research question and get a sourced, up-to-date answer pulled into your session." }
     ]},
     { mark:"12", title:"Build your own", blurb:"Make plugins, agents, and MCP servers.", items:[
-      { n:"plugin-dev", t:"claude", pr:"free", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install plugin-dev", d:"A toolkit for building Claude Code plugins — scaffolding, structure, and validation." },
-      { n:"mcp-server-dev", t:"universal", pr:"free", u:"https://modelcontextprotocol.io", d:"Design and build MCP servers — the universal connectors that work across every AI tool here." },
-      { n:"Smithery", t:"universal", pr:"freemium", u:"https://smithery.ai", i:"npx -y @smithery/cli install <server> --client claude", d:"The registry and CLI for the ecosystem — discover and install thousands of MCP servers with one command instead of hand-wiring config." },
-      { n:"agent-sdk-dev", t:"claude", pr:"free", u:"https://docs.claude.com/en/api/agent-sdk/overview", d:"Build custom agents on the Claude Agent SDK — the foundation under Claude Code itself." }
+      { n:"plugin-dev", t:"claude", u:"https://github.com/anthropics/claude-plugins-official", i:"/plugin install plugin-dev", d:"A toolkit for building Claude Code plugins — scaffolding, structure, and validation." },
+      { n:"mcp-server-dev", t:"universal", u:"https://modelcontextprotocol.io", d:"Design and build MCP servers — the universal connectors that work across every AI tool here." },
+      { n:"agent-sdk-dev", t:"claude", u:"https://docs.claude.com/en/api/agent-sdk/overview", d:"Build custom agents on the Claude Agent SDK — the foundation under Claude Code itself." }
     ]}
   ];
 
@@ -285,44 +260,23 @@
 
   (function () {
     var esc = function (s) { return String(s).replace(/[&<>]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]; }); };
-    var slugify = function (s) { return "job-" + String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""); };
     var urlByName = {};
-    JOBS.forEach(function (j) { j.slug = slugify(j.title); j.items.forEach(function (it) { urlByName[it.n] = it.u; }); });
+    JOBS.forEach(function (j) { j.items.forEach(function (it) { urlByName[it.n] = it.u; }); });
 
-    var priceLabel = { free:"Free", freemium:"Freemium", paid:"Paid" };
     var board = document.getElementById("board");
     board.innerHTML = JOBS.map(function (j) {
       var cards = j.items.map(function (it) {
         var right = it.made ? '<span class="made">plumbgoat</span>' : (it.pop ? '<span class="pop">' + esc(it.pop) + '</span>' : "");
         var tag = it.t === "claude" ? '<span class="tag claude">Claude</span>' : '<span class="tag uni">Universal</span>';
-        var priceTag = it.pr && priceLabel[it.pr] ? '<span class="tag price price-' + it.pr + '">' + priceLabel[it.pr] + '</span>' : "";
-        var inst = it.i
-          ? '<div class="install"><span class="install-cmd"><span class="p">$</span> ' + esc(it.i) + '</span><button type="button" class="copy-btn" data-copy="' + esc(it.i) + '" aria-label="Copy install command" title="Copy install command">⧉</button></div>'
-          : '<div class="install" style="color:var(--muted)">setup on the linked page ↗</div>';
-        var srch = (it.n + " " + it.d + " " + (it.pr || "")).toLowerCase().replace(/"/g, "");
+        var inst = it.i ? '<div class="install"><span class="p">$</span> ' + esc(it.i) + '</div>' : '<div class="install" style="color:var(--muted)">setup on the linked page ↗</div>';
+        var srch = (it.n + " " + it.d).toLowerCase().replace(/"/g, "");
         return '<a class="plug ' + (it.made ? "feat " : "") + 'reveal" data-tools="' + it.t + '" data-search="' + srch + '" href="' + it.u + '" target="_blank" rel="noopener">' +
           '<div class="plug-top"><h3>' + esc(it.n) + '</h3>' + right + '</div>' +
           '<p>' + esc(it.d) + '</p>' + inst +
-          '<div class="tags">' + tag + priceTag + '</div></a>';
+          '<div class="tags">' + tag + '</div></a>';
       }).join("");
-      return '<section class="job" id="' + j.slug + '"><div class="job-head reveal"><span class="jn">' + j.mark + '</span><h2>' + esc(j.title) + '</h2><p>' + esc(j.blurb) + '</p></div><div class="grid">' + cards + '</div></section>';
+      return '<section class="job"><div class="job-head reveal"><span class="jn">' + j.mark + '</span><h2>' + esc(j.title) + '</h2><p>' + esc(j.blurb) + '</p></div><div class="grid">' + cards + '</div></section>';
     }).join("");
-
-    document.getElementById("jumpnav").innerHTML = JOBS.map(function (j) {
-      return '<a href="#' + j.slug + '">' + j.mark + ' ' + esc(j.title) + '</a>';
-    }).join("");
-
-    board.addEventListener("click", function (e) {
-      var btn = e.target.closest ? e.target.closest(".copy-btn") : null;
-      if (!btn) return;
-      e.preventDefault();
-      e.stopPropagation();
-      if (!(navigator.clipboard && navigator.clipboard.writeText)) return;
-      navigator.clipboard.writeText(btn.getAttribute("data-copy")).then(function () {
-        btn.textContent = "✓";
-        setTimeout(function () { btn.textContent = "⧉"; }, 1200);
-      }).catch(function () {});
-    });
 
     document.getElementById("stacks").innerHTML = STACKS.map(function (s) {
       var members = s.m.map(function (name) {
@@ -342,7 +296,7 @@
       var shown = 0;
       [].forEach.call(document.querySelectorAll(".plug"), function (p) {
         var t = p.getAttribute("data-tools");
-        var okType = curFilter === "all" || t === curFilter;
+        var okType = curFilter === "all" || t === "universal" || (t === "claude" && curFilter === "claude");
         var okSearch = !curQuery || (p.getAttribute("data-search") || "").indexOf(curQuery) !== -1;
         var ok = okType && okSearch;
         p.style.display = ok ? "" : "none";
