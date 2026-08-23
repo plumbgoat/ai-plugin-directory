@@ -5,13 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Plugboard — AI coding add-ons, by the job you're doing</title>
 <meta name="description" content="A curated, cross-tool directory of AI coding plugins and MCP servers — organized by what you're trying to do, not by vendor. Filter by the tool you use.">
+<link rel="canonical" href="https://plumbgoat.github.io/ai-plugin-directory/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://plumbgoat.github.io/ai-plugin-directory/">
+<meta property="og:site_name" content="Plugboard">
 <meta property="og:title" content="Plugboard — AI coding add-ons, by job">
 <meta property="og:description" content="A curated directory of AI coding plugins & MCP servers, sorted by the job you're doing. Filter by the tool you use.">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://plumbgoat.github.io/ai-plugin-directory/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Plugboard — AI coding add-ons, by the job you're doing. 65 add-ons across Debug, Test, Ship, Data and Security.">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Plugboard — AI coding add-ons, by job">
 <meta name="twitter:description" content="A curated directory of AI coding plugins & MCP servers, sorted by the job you're doing.">
+<meta name="twitter:image" content="https://plumbgoat.github.io/ai-plugin-directory/og-image.png">
 <style>
   :root {
     --paper:#F6F7F6;--paper-2:#ECEEEC;--ink:#191C1B;--muted:#64706C;--line:#DCE0DD;--card:#FFFFFF;
@@ -143,7 +150,7 @@
       <h1>AI coding add-ons, <span class="g">by the job</span> you're doing.</h1>
       <p class="lede">A curated shelf of plugins &amp; MCP servers for AI dev tools — sorted by what you're trying to get done, not by which company made them. Filter by the tool you actually use.</p>
       <div class="cta-row">
-        <a class="btn btn-star" href="https://github.com/plumbgoat/ai-plugin-directory" target="_blank" rel="noopener">★ Star on GitHub <span class="star-count" id="stars">—</span></a>
+        <a class="btn btn-star" href="https://github.com/plumbgoat/ai-plugin-directory" target="_blank" rel="noopener">★ Star on GitHub <span class="star-count" id="stars" style="display:none"></span></a>
         <button class="btn btn-share" id="shareBtn" type="button">Share ↗</button>
         <a class="btn btn-share" id="suggestBtn" href="https://github.com/plumbgoat/ai-plugin-directory/issues/new" target="_blank" rel="noopener">＋ Suggest an add-on</a>
         <a class="btn btn-share" href="https://plumbgoat.github.io/ai-dev-roadmap/" target="_blank" rel="noopener">🌳 Learn the skills</a>
@@ -383,10 +390,22 @@
         encodeURIComponent("Suggest an add-on: ") + "&body=" + encodeURIComponent(body);
     }
 
-    // live GitHub star count (works once hosted on GitHub Pages; blocked in the artifact preview)
+    // Live GitHub star count (works once hosted on GitHub Pages; blocked in the
+    // artifact preview). Only shown past STAR_FLOOR — a low count is social proof
+    // pointing the wrong way, so below that the badge stays hidden entirely.
+    var STAR_FLOOR = 25;
     fetch("https://api.github.com/repos/plumbgoat/ai-plugin-directory")
       .then(function (r) { return r.json(); })
-      .then(function (d) { if (d && typeof d.stargazers_count === "number") document.getElementById("stars").textContent = d.stargazers_count; })
+      .then(function (d) {
+        var el = document.getElementById("stars");
+        if (!el) return;
+        if (d && typeof d.stargazers_count === "number" && d.stargazers_count >= STAR_FLOOR) {
+          el.textContent = d.stargazers_count;
+          el.style.display = "inline-block";
+        } else {
+          el.style.display = "none";
+        }
+      })
       .catch(function () {});
 
     // share button
