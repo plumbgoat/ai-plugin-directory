@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://plumbgoat.github.io/ai-plugin-directory/sitemap.xml
