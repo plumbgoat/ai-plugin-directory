@@ -54,6 +54,8 @@ global.document = {
 };
 global.window = {};
 global.navigator = {};
+global.location = { search: "", pathname: "/", href: "" };
+global.history = { replaceState() {} };
 global.matchMedia = () => ({ matches: false });
 global.fetch = () => ({ then: () => ({ then: () => ({ catch() {} }) }) });
 global.IntersectionObserver = function () {

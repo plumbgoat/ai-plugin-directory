@@ -17,6 +17,8 @@ const stubEl = { innerHTML: "", addEventListener() {}, getAttribute() { return n
 global.document = { getElementById: () => stubEl, querySelectorAll: () => [], addEventListener() {} };
 global.navigator = {};
 global.window = {};
+global.location = { search: "", pathname: "/", href: "" };
+global.history = { replaceState() {} };
 global.matchMedia = () => ({ matches: false });
 global.fetch = () => Promise.resolve({ json: () => Promise.resolve({}) });
 
