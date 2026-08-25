@@ -106,10 +106,13 @@
 
   /* ── table ────────────────────────────────────────────────── */
   .grid { display:block; background:var(--pane); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
-  table.tbl { width:100%; border-collapse:collapse; }
+  /* fixed layout: one very long install command must not starve the other columns */
+  table.tbl { width:100%; border-collapse:collapse; table-layout:fixed; }
   .tbl th { text-align:left; font-size:0.65rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase;
             color:var(--muted); padding:0.5rem 0.85rem; border-bottom:1px solid var(--line); background:#FAFBFC; }
-  .tbl td { padding:0.62rem 0.85rem; border-bottom:1px solid var(--line); font-size:0.84rem; vertical-align:top; }
+  .tbl td { padding:0.62rem 0.85rem; border-bottom:1px solid var(--line); font-size:0.84rem;
+            vertical-align:top; overflow:hidden; }
+  .tbl td.c-name { overflow-wrap:anywhere; }
   .tbl tr:last-child td { border-bottom:0; }
   .plug { text-decoration:none; color:inherit; }
   .tbl tr.plug:hover td { background:#FAFBFF; }
